@@ -65,11 +65,11 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 #theme: landscape
-theme: yili
+theme: yilia
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/Tracyxzh/Tracyxzh.github.io
+  repo: https://github.com/Tracyxzh/blog
   
   branch: master
