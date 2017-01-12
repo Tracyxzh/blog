@@ -70,6 +70,6 @@ theme: yili
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/Tracyxzh/
+  repo: https://github.com/Tracyxzh/Tracyxzh.github.io
   
   branch: master
