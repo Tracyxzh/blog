@@ -72,7 +72,7 @@ theme: yilia
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: http://github.com/Tracyxzh/Tracyxzh.github.io
+  repo: https://github.com/Tracyxzh/Tracyxzh.github.io
   
   branch: master
 
