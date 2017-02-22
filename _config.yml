@@ -9,7 +9,7 @@ description: 一直快乐的鱼     #描述
 author: Tracyxzh              #作者名
 email: 243307483@qq.com       #邮箱
 language: zh-CN               #设置中文
-timezone:
+timezone: Asia/Shanghai       #设置时区
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -72,8 +72,7 @@ theme: yilia
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: http://github.com/Tracyxzh/Tracyxzh.github.io
-  
+  repo: https://github.com/Tracyxzh/Tracyxzh.github.io.git
   branch: master
 
 jsonContent:
