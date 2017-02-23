@@ -37,3 +37,11 @@ tags: [bug, 小章鱼, hexo]
 
 ## 参考链接
 [blog1](http://www.cnblogs.com/sword-successful/p/6408281.html)
+<!-- more -->
+## hexo 中写数学公式 Latex
+
+ps:今天本来是准备动手看算法方面的东西，然后准备使用hexo看下数学公式怎么显示。然后就出现问题了，显示的时候会出现很多莫名的问题。重要的是我都没有数学编辑器，😂话说论文也要写了啊。所以开始找个好一点的数学编辑器，然后在b呼中找到了。那么问题来了，是时候写一篇练习Latex的文档了。
+
+[submlim + Latex](https://www.zhihu.com/question/23918126/answer/29977055)
+[b呼推荐](https://www.zhihu.com/question/20928639)
+[解决方法](http://draveness.me/hexozhong-latexde-shi-yong/)：就是把主题中的配置文件中的 mathjax: true 设置为true
