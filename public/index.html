@@ -150,6 +150,188 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-javaPaper" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/28/javaPaper/">java 面试遇到的问题</a>
+    </h1>
+  
+
+        
+        <a href="/2017/02/28/javaPaper/" class="archive-article-date">
+  	<time datetime="2017-02-28T04:56:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>前言：突然发现我现在写blog喜欢写些原因，最近有可能是在图书馆听着民谣，效率更高吧。我写这个就是想着把自己面试遇到的一些小问题整理下，方便自己以后看看，以方便以后别人面试的时候遇到。</p>
+<h2 id="java-初始化块、静态初始化块、构造函数初始化"><a href="#java-初始化块、静态初始化块、构造函数初始化" class="headerlink" title="java 初始化块、静态初始化块、构造函数初始化"></a>java 初始化块、静态初始化块、构造函数初始化</h2><p><a href="https://www.caoqq.net/java-class-initialization.html">理解Java中的类初始化</a></p>
+<h2 id="static-关键字"><a href="#static-关键字" class="headerlink" title="static 关键字"></a>static 关键字</h2><ul>
+<li>当声明一个事物为static时，就意味着这个域或方法不会与包含它的类的任何对象实例关联在一起。</li>
+<li>即使从未创建某个类的任何对象，也可以调用其static方法或访问其static域</li>
+</ul>
+        
+          <a class="article-more-a" href="/2017/02/28/javaPaper/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小章鱼</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/java/" class="article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/02/28/javaPaper/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-jvm" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/27/jvm/">初步接触jvm</a>
+    </h1>
+  
+
+        
+        <a href="/2017/02/27/jvm/" class="archive-article-date">
+  	<time datetime="2017-02-27T10:42:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>ps：本来最近在弄nginx方面的东西，结果接到了SAP的电话面试，面试的java方面的知识，感觉自己对于jvm方面的知识了解有限，所以决定学习下jvm，刚好前段时间看到了《初探java虚拟机》这本书，那么接下来的学习笔记基本是以这本书为材料。</p>
+<h2 id="虚拟机的基本结构"><a href="#虚拟机的基本结构" class="headerlink" title="虚拟机的基本结构"></a>虚拟机的基本结构</h2><ul>
+<li>虚拟机架构<br>类加载子系统负责从文件系统或者网络中加载Class信息，加载的类信息存放于一块称为方法区的内存空间。方法区还存放运行时常量池信息，包括字符串字面量和数字常量。</li>
+</ul>
+<p>java堆在虚拟机启动的时候建立，它是java程序最重要的内存工作区域。几乎所有的实例都放在java堆中。堆空间是线程共享的，这是一块与java应用密切相关的内存区间。</p>
+<p>java的NIO库允许java程序使用直接内存。直接内存是在java堆外的、直接向系统申请的内存空间。通常直接内存的速度会优于java堆。由于直接内存在java堆外，因此它的大小不会直接受限于Xmx指定的最大堆大小，但是系统内存是有限的，java堆和直接内存的总和依然受限于操作系统能给的最大内存。</p>
+        
+          <a class="article-more-a" href="/2017/02/27/jvm/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小章鱼</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jvm</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/java/" class="article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/02/27/jvm/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-nginx" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -171,10 +353,11 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>前段时间买了一个阿里云服务器，由于是学生特价，还挺实惠的。然后过年期间就一直没去弄他，备案也差最后照相没去弄，找个时间把这个弄了。所以想着可以玩玩服务器，这段时间没怎么接错linux方面的知识，刚好借助这个机会熟悉下。拿到服务器，开始的时候是一脸萌比的，里面什么都没有，所以需要自己安装相应的软件。</p>
-<h2 id="第一步-远程登录"><a href="#第一步-远程登录" class="headerlink" title="第一步 远程登录"></a>第一步 远程登录</h2><p><a href="http://blog.geeek.info/2016/03/18/linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/" target="_blank" rel="external">参考blog</a><br><a href="https://help.aliyun.com/knowledge_detail/41493.html" target="_blank" rel="external">阿里帮助文档</a><br>使用iterm2 在本地配置好了，就可以ssh免密登陆到阿里云服务器了。</p>
-<h2 id="第二部-安装-nginx"><a href="#第二部-安装-nginx" class="headerlink" title="第二部 安装 nginx"></a>第二部 安装 nginx</h2><p>步骤<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">* yum -y install nginx</div><div class="line">* /etc/init.d/nginx start </div><div class="line">这个地方会报错，nginx：nginx: [emerg] socket() [::]:80 failed (97: Address family not supported by protocol)</div><div class="line">解决方案： </div><div class="line">	* vim /etc/nginx/conf.d/default.conf</div><div class="line">	* 注释 [::]:80 default_server</div><div class="line">* /etc/init.d/nginx restart</div><div class="line">* 访问ip</div></pre></td></tr></table></figure></p>
-<h2 id="第三部，nginx-配置"><a href="#第三部，nginx-配置" class="headerlink" title="第三部，nginx 配置"></a>第三部，nginx 配置</h2><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>《实战Nginx》<br>《Nginx Http server》</p>
-
+<h2 id="第一步-远程登录"><a href="#第一步-远程登录" class="headerlink" title="第一步 远程登录"></a>第一步 远程登录</h2><p><a href="http://blog.geeek.info/2016/03/18/linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE/">参考blog</a><br><a href="https://help.aliyun.com/knowledge_detail/41493.html">阿里帮助文档</a><br>使用iterm2 在本地配置好了，就可以ssh免密登陆到阿里云服务器了。</p>
+<h2 id="第二步-安装-nginx"><a href="#第二步-安装-nginx" class="headerlink" title="第二步 安装 nginx"></a>第二步 安装 nginx</h2><p>步骤<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">* yum -y install nginx</div><div class="line">* /etc/init.d/nginx start </div><div class="line">这个地方会报错，nginx：nginx: [emerg] socket() [::]:80 failed (97: Address family not supported by protocol)</div><div class="line">解决方案： </div><div class="line">	* vim /etc/nginx/conf.d/default.conf</div><div class="line">	* 注释 [::]:80 default_server</div><div class="line">* /etc/init.d/nginx restart</div><div class="line">* 访问ip</div></pre></td></tr></table></figure></p>
+        
+          <a class="article-more-a" href="/2017/02/27/nginx/#more">more >></a>
+        
       
 
       
@@ -191,11 +374,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">nginx</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">nginx</a>
         		</li>
       		
 		</ul>
@@ -477,11 +660,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">bug</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">bug</a>
         		</li>
       		
 		</ul>
@@ -503,99 +686,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/02/22/bug/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-transction" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/19/transction/">数据库学习笔记一</a>
-    </h1>
-  
-
-        
-        <a href="/2017/02/19/transction/" class="archive-article-date">
-  	<time datetime="2017-02-19T14:45:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h2><p>连接是把不同表的记录连到一起的最普遍的方法。</p>
-<ul>
-<li>内连接：最普遍的连接类型，而且是最匀称的，因为它们要求构成连接的每一个部分的每个表匹配，不匹配的行将被排除。</li>
-<li>外连接：使用outer join关键字将两个表连接起来。外连接生成的结果集不仅包括符合链接条件的行数据，而且还包括左表（左外连接）、右表（右边连接时的表）或两边链接表（全外连接时的表）中所有的数据行。</li>
-</ul>
-<h2 id="合并查询"><a href="#合并查询" class="headerlink" title="合并查询"></a>合并查询</h2><p>合并查询结果是将多个select语句的查询结果合并在一起。因为某种情况下，需要将几个select语句查询出来的结果合并起来显示。合并查询结果使用union和union all关键字。union关键字是将所有的查询结果合并在一起，然后去除相同记录；而union all关键字则只是简单地将结果合并在一起。</p>
-        
-          <a class="article-more-a" href="/2017/02/19/transction/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小章鱼</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">事务处理</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/数据库/" class="article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/19/transction/">展开全文 >></a>
         </p>
       
 
@@ -711,6 +801,99 @@
 
 
   
+    <article id="post-transction" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/19/transction/">数据库学习笔记一</a>
+    </h1>
+  
+
+        
+        <a href="/2017/02/19/transction/" class="archive-article-date">
+  	<time datetime="2017-02-19T14:45:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h2><p>连接是把不同表的记录连到一起的最普遍的方法。</p>
+<ul>
+<li>内连接：最普遍的连接类型，而且是最匀称的，因为它们要求构成连接的每一个部分的每个表匹配，不匹配的行将被排除。</li>
+<li>外连接：使用outer join关键字将两个表连接起来。外连接生成的结果集不仅包括符合链接条件的行数据，而且还包括左表（左外连接）、右表（右边连接时的表）或两边链接表（全外连接时的表）中所有的数据行。</li>
+</ul>
+<h2 id="合并查询"><a href="#合并查询" class="headerlink" title="合并查询"></a>合并查询</h2><p>合并查询结果是将多个select语句的查询结果合并在一起。因为某种情况下，需要将几个select语句查询出来的结果合并起来显示。合并查询结果使用union和union all关键字。union关键字是将所有的查询结果合并在一起，然后去除相同记录；而union all关键字则只是简单地将结果合并在一起。</p>
+        
+          <a class="article-more-a" href="/2017/02/19/transction/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小章鱼</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">事务处理</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/数据库/" class="article-tag-list-link color4">数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/02/19/transction/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-reading" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -734,7 +917,7 @@
         <p>这里记录下每个阶段的学习资料</p>
 <p>##java 多线程和并发<br><a href="http://wiki.jikexueyuan.com/project/java-concurrent/thread-communication.html" target="_blank" rel="external">java 并发性和多线程</a><br><a href="http://ifeve.com/" target="_blank" rel="external">并发编程网</a><br><a href="http://docs.oracle.com/javase/8/docs/api/index.html" target="_blank" rel="external">JDK8</a><br><a href="http://download.java.net/jdk/jdk-api-localizations/jdk-api-zh-cn/builds/latest/html/zh_CN/api/" target="_blank" rel="external">JDK6</a></p>
 <p><a href="http://lycy521.blog.51cto.com/3492922/1333172" target="_blank" rel="external">mysql 忘记 root 密码</a></p>
-<h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><p>《Mysql快速入门》 纸质书籍<br>《事务处理的技术和概念》 这个学习的文档使电子书籍</p>
+<h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><p>《Mysql快速入门》 纸质书籍<br>《事务处理的技术和概念》 这个学习的文档使电子书籍<br>《java编程思想》 纸质书籍</p>
 
       
 
@@ -878,178 +1061,6 @@
 
 
   
-    <article id="post-thailand00" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/04/thailand00/">泰国游记序言</a>
-    </h1>
-  
-
-        
-        <a href="/2017/02/04/thailand00/" class="archive-article-date">
-  	<time datetime="2017-02-04T15:44:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>这是一次真正意义上的说走就走的旅行，当我看到我同门师弟（其实也不算师弟，我们同届，只是他晚来几天^-^）在买飞机票的时候我就好奇的问了句“去哪里玩吗？”同时回了句“我也去可以？”。就这样的两个问句开始我2017年的第一次旅游，同时也是我的第一次出国游，同时也完成了我许许多多的第一次。<br>最最重要的使这是我第一次写游记，本来没这种兴趣的，但是不知道怎么就在手机上写了一些简单的记录，回来了也就想着干脆写游记吧。毕竟这一路上自己也遇到了一些坑，就当给别人一些参考也好，而且一边写着一边回忆起旅游的乐事，真的很有意思，有的时候都会笑出来声来。</p>
-<p>首先简单介绍一下一起出行的6个人。</p>
-        
-          <a class="article-more-a" href="/2017/02/04/thailand00/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小章鱼</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">travel</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">thailand</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/travel/" class="article-tag-list-link color2">travel</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/04/thailand00/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-2017plan" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/14/2017plan/">小章鱼2017年计划</a>
-    </h1>
-  
-
-        
-        <a href="/2017/01/14/2017plan/" class="archive-article-date">
-  	<time datetime="2017-01-14T15:53:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>  2016年已经过去了。</p>
-<hr>
-<h2 id="2017年计划非技术"><a href="#2017年计划非技术" class="headerlink" title="2017年计划非技术"></a>2017年计划非技术</h2><h3 id="文艺片"><a href="#文艺片" class="headerlink" title="文艺片"></a>文艺片</h3><ol>
-<li>至少观看两部话剧(周五晚上)，话剧表演艺术以及观众对的素质，是我深深的爱上了话剧这种艺术形式</li>
-<li>至少观看六部电影</li>
-<li>至少看十本课外书，生活不止眼前的苟且，还有诗和远方的田野。</li>
-<li>去上海野生动物园(携程买)，喜欢看BBC对于动物纪录片的记录。</li>
-</ol>
-        
-          <a class="article-more-a" href="/2017/01/14/2017plan/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小章鱼</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">paln</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/plan/" class="article-tag-list-link color5">plan</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/01/14/2017plan/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1160,6 +1171,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">paln</a>
               </li>
              
@@ -1168,11 +1183,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1180,7 +1195,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1188,11 +1203,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color3">测试</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">测试</a>
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1200,7 +1215,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">reading</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1209,10 +1232,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">thailand</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
