@@ -73,6 +73,16 @@ System.out.println("total:" + sum1);
 System.out.println("processing time: " + (System.currentTimeMillis() - t1) + " ms");
 ```
 
+## java 流
+流向：
+* 输入流：
+* 输出流：
+* 字节流：
+* 字符流：
+* 节点流：
+* 过滤流：
+
+
 [blog](http://blog.oneapm.com/apm-tech/635.html)
 
 ## 参考资料
