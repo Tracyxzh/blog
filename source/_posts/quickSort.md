@@ -1,6 +1,6 @@
 ---
 title: java 算法 （排序算法 快速排序）
-categories: 数据库                    #文章文类
+categories: 算法                    #文章文类
 date: 2017-02-24 13:44:19
 tags: ["小章鱼", "java", "algorithm"]
 ---

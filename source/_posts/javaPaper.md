@@ -74,14 +74,11 @@ System.out.println("processing time: " + (System.currentTimeMillis() - t1) + " m
 ```
 
 ## java 流
-流向：
-* 输入流：
-* 输出流：
-* 字节流：
-* 字符流：
-* 节点流：
-* 过滤流：
-
+InputStream OutputStream 8位 操作二进制数据
+Reader Writer 16位 以Unicode字符为单位从stream读取或往stream写入
+InputStreamReader 将InputStream转换为Reader
+OutputStreamWriter 将OutputStream转换为Writer
+1.标准输入输出 2.文件操作 3.网络上数据流 4.字符串流 5.对象流 6.zip文件流
 
 [blog](http://blog.oneapm.com/apm-tech/635.html)
 
