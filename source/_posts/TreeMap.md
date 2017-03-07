@@ -2,7 +2,7 @@
 title: 二叉查找树
 date: 2017-03-02 18:46:02
 categories: java                    #文章文类
-tags: ["数据结构", "Tree", "java"]
+tags: ["数据结构", "Tree", "java", 算法]
 ---
 
 ## 前言

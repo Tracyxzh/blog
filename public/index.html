@@ -83,8 +83,7 @@
 		        
 					<a class="twitter" target="_blank" href="#" title="twitter"><i class="icon-twitter"></i></a>
 		        
-		<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=412016547&auto=1&height=32"></iframe			<ul>
-		        
+		        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=412016547&auto=1&height=32"></iframe>
 			</div>
 		</nav>
 	</header>		
@@ -151,6 +150,186 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-hashmap" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/07/hashmap/">hashmap 源码分析</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/07/hashmap/" class="archive-article-date">
+  	<time datetime="2017-03-07T13:49:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我发现了，写博客什么的最有意思的时候还是写前言来的开心。反正就是瞎嗨为什么动笔。为什么写这个是因为今天面试的时候问当了下面这段代码中构造函数中的参数数是干嘛用的，问这个问题我当时很羞愧，其实有的时候自己也会去问为什么有这么多构造函数，具体应用场景是什么，然后就是没有刨根问底的精神。现在我就来刨根问底下也不晚吧，😂</p>
+<h2 id="所问代码"><a href="#所问代码" class="headerlink" title="所问代码"></a>所问代码</h2><p>可以看到构造函数中都可以传入参数<br><img src="/2017/03/07/hashmap/gouzao.png" alt="HashMap构造函数"></p>
+<ul>
+<li>threshold：阈值，用于判断是否需要调整容量。threshold的值=”容量*加载因子”</li>
+<li>loadFactor：加载因子，通常设为0.75</li>
+</ul>
+<h2 id="HashMap源代码为例子分析"><a href="#HashMap源代码为例子分析" class="headerlink" title="HashMap源代码为例子分析"></a>HashMap源代码为例子分析</h2><p>Java.util.Hashtable类实现了JAVA中的哈希表，内部采用Node[]数组，每个Node均可作为链表的头，用来解决哈希碰撞。</p>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul>
+<li>基于哈希表的 Map 接口的实现。</li>
+<li>允许使用 null 值和 null 键。</li>
+<li>此类不保证映射的顺序。</li>
+</ul>
+<h2 id="Node类-源码"><a href="#Node类-源码" class="headerlink" title="Node类 源码"></a>Node类 源码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">static class Node&lt;K,V&gt; implements Map.Entry&lt;K,V&gt; &#123;</div><div class="line">    final int hash;</div><div class="line">    final K key;</div><div class="line">    V value;</div><div class="line">    Node&lt;K,V&gt; next;</div><div class="line"></div><div class="line">    Node(int hash, K key, V value, Node&lt;K,V&gt; next) &#123;</div><div class="line">        this.hash = hash;</div><div class="line">        this.key = key;</div><div class="line">        this.value = value;</div><div class="line">        this.next = next;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public final K getKey()        &#123; return key; &#125;</div><div class="line">    public final V getValue()      &#123; return value; &#125;</div><div class="line">    public final String toString() &#123; return key + &quot;=&quot; + value; &#125;</div><div class="line"></div><div class="line">    public final int hashCode() &#123;</div><div class="line">        return Objects.hashCode(key) ^ Objects.hashCode(value);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public final V setValue(V newValue) &#123;</div><div class="line">        V oldValue = value;</div><div class="line">        value = newValue;</div><div class="line">        return oldValue;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public final boolean equals(Object o) &#123;</div><div class="line">        if (o == this)</div><div class="line">            return true;</div><div class="line">        if (o instanceof Map.Entry) &#123;</div><div class="line">            Map.Entry&lt;?,?&gt; e = (Map.Entry&lt;?,?&gt;)o;</div><div class="line">            if (Objects.equals(key, e.getKey()) &amp;&amp;</div><div class="line">                Objects.equals(value, e.getValue()))</div><div class="line">                return true;</div><div class="line">        &#125;</div><div class="line">        return false;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2017/03/07/hashmap/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hash</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/07/hashmap/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-hash" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/07/hash/">几种解决hash碰撞的方法</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/07/hash/" class="archive-article-date">
+  	<time datetime="2017-03-07T12:21:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>又到了胡说八道时间，今天晚上接到携程电话面试（暑期实习面试），但是我正在填写银联数据的试卷（话说我面试已经过了，只要笔试过了就可以了，然而接了个电话，gg）。为什么写这个是因为今天面试问到我如何解决hash碰撞，学习知识才是王道。</p>
+<h2 id="哈希碰撞"><a href="#哈希碰撞" class="headerlink" title="哈希碰撞"></a>哈希碰撞</h2><p>哈希碰撞是不同的key通过哈希函数以后得到了相同的value值。原理图如下：</p>
+<p><img src="/2017/03/07/hash/pengzhuang.png" alt="哈希碰撞"></p>
+<h2 id="拉链法"><a href="#拉链法" class="headerlink" title="拉链法"></a>拉链法</h2><p>Java标准库的HashMap和HashTable基本上就是用拉链法实现的。拉链法的实现比较简单，将链表和数组相结合。也就是说创建一个链表数组，数组中每一格就是一个链表。若遇到哈希冲突，则将冲突的值加到链表中即可。原理图如下：</p>
+<p><img src="/2017/03/07/hash/lianbiao.png" alt="hashmap和hashtable底层存储结构"></p>
+<p>步骤：</p>
+<ul>
+<li>通过key算出hash值</li>
+<li>通过hash值找到地址</li>
+<li>如果地址为空，直接添加</li>
+<li>如果地址不为空，插入表头</li>
+</ul>
+<h2 id="线性探测法"><a href="#线性探测法" class="headerlink" title="线性探测法"></a>线性探测法</h2><p>线性探索法是最简单的解决hash碰撞的方法。他把散列表当作一个循环数组看待。原理图如下：</p>
+<p><img src="/2017/03/07/hash/tance.png" alt="线性探测法原理图"></p>
+<p>步骤：</p>
+<ul>
+<li>通过key算出hash值</li>
+<li>通过hash值找到地址</li>
+<li>如果地址为空，直接添加</li>
+<li>如果地址不为空，地址++，回到上一步，循环的顺序是0-n-1-0</li>
+</ul>
+<h2 id="双重哈希法"><a href="#双重哈希法" class="headerlink" title="双重哈希法"></a>双重哈希法</h2><p>hi=(h(key)+ih1(key))％m 0≤i≤m-1 //即di=i*h1(key) ，也就是使用两个哈希函数</p>
+<h2 id="再哈希法"><a href="#再哈希法" class="headerlink" title="再哈希法"></a>再哈希法</h2><p>简单的点说就是如果hash函数1发生冲突就换一个hash函数2</p>
+<h2 id="建立公共溢出区"><a href="#建立公共溢出区" class="headerlink" title="建立公共溢出区"></a>建立公共溢出区</h2><p>这种方法的基本思想是：将哈希表分为基本表和溢出表两部分，凡是和基本表发生冲突的元素，一律填入溢出表</p>
+<p>##参考链接<br><a href="http://threezj.com/2016/03/28/%E7%94%A8%E6%8B%89%E9%93%BE%E6%B3%95%E5%92%8C%E7%BA%BF%E6%80%A7%E6%8E%A2%E6%B5%8B%E6%B3%95%E8%A7%A3%E5%86%B3%E5%93%88%E5%B8%8C%E5%86%B2%E7%AA%81/" target="_blank" rel="external">blog1</a><br><a href="http://www.jianshu.com/p/eb335abc88dd" target="_blank" rel="external">blog2</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hash</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/07/hash/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-taiday1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -243,7 +422,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/02/TreeMap/">TreeMap 和 TreeSet</a>
+      <a class="article-title" href="/2017/03/02/TreeMap/">二叉查找树</a>
     </h1>
   
 
@@ -256,14 +435,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="TreeMap"><a href="#TreeMap" class="headerlink" title="TreeMap"></a>TreeMap</h2><p>特点：</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本来是准备了解下HashMap特点的，最后又看到源码，然后就想知道底层原理是什么。发现又遇到了红黑树这个概念，以前一直有遇到，但是每次看了一点点就放弃了。有句话不是说：今生的是一个回首是因为上辈子500次插肩而过。我得到的结论就是如果想撩到自己喜欢的妹子，那就要多几次插肩而过，所以我决定和二叉查找树，多联络联络感情。😂😂😂</p>
+<h2 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h2><p>二叉查找树满足按序搜索的性质，即对于树中的每个节点X，所有在X左子树中的元素的键值都比X的键值小，所有在X右子树中元素的键值逗逼X的键值要大。</p>
+<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><ul>
+<li>find：从根开始，根据比较的结果，走左分支或右分支</li>
+<li>findMin操作时只要有左孩子就搜索左分支，findMax也是类似。 </li>
+<li>remove操作时很困难的，因为非叶子结点奖树连接在一起，而我们不希望断开这棵树<ul>
+<li>如果一个结点只有一个孩子，通过让它的父节点跳过它来删除它。</li>
+<li>删除一个具有两个孩子的节点，只要用它右子树中最小的项来代替它。然后删除原来的右子树的最小节点。</li>
+</ul>
+</li>
+</ul>
+<h2 id="TreeMap"><a href="#TreeMap" class="headerlink" title="TreeMap"></a>TreeMap</h2><p>特点：</p>
 <ul>
 <li>实现了red 实现了red-black树结构。</li>
 <li>查找、插入和删除的时间复杂度是 $log\left ( n \right )$。</li>
 <li>TreeMap 对象这方面比BinSearchTree对象高级，与AVLTree对象不相上下。</li>
 <li>元素按照键的顺序存储。</li>
 </ul>
-<h2 id="参考书籍"><a href="#参考书籍" class="headerlink" title="参考书籍"></a>参考书籍</h2><p>《数据结构和java集合框架》</p>
+<h2 id="红黑树-（red-black-tree）"><a href="#红黑树-（red-black-tree）" class="headerlink" title="红黑树 （red-black-tree）"></a>红黑树 （red-black-tree）</h2><h2 id="参考书籍"><a href="#参考书籍" class="headerlink" title="参考书籍"></a>参考书籍</h2><p>《数据结构和java集合框架》</p>
 
       
 
@@ -281,11 +471,15 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">TreeMap</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Tree</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
         		</li>
       		
 		</ul>
@@ -365,11 +559,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小章鱼</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小章鱼</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -454,11 +648,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小章鱼</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小章鱼</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -547,11 +741,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小章鱼</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小章鱼</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -717,11 +911,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小章鱼</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小章鱼</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -828,11 +1022,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小章鱼</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小章鱼</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -858,194 +1052,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/02/23/javahigh/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-bug" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/22/bug/">开发中的bug</a>
-    </h1>
-  
-
-        
-        <a href="/2017/02/22/bug/" class="archive-article-date">
-  	<time datetime="2017-02-22T05:40:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>问题：解决maven 更新慢的问题<br>系统：Mac<br>解决方向：使用阿里镜像<br>方法：</p>
-<ol>
-<li>cd /usr/local/Cellar/maven/3.3.9/libexec/conf(brew install maven 的路径)</li>
-<li>subl setting.xml (subl 在这里是使用sublime text 打开 文件 open -a )</li>
-<li>将下面代码替换setting.xml中的 mirrors    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;mirrors&gt;</div><div class="line">  &lt;!-- mirror</div><div class="line">   | Specifies a repository mirror site to use instead of a given repository. The repository that</div><div class="line">   | this mirror serves has an ID that matches the mirrorOf element of this mirror. IDs are used</div><div class="line">   | for inheritance and direct lookup purposes, and must be unique across the set of mirrors.</div><div class="line">   |</div><div class="line">  &lt;mirror&gt;</div><div class="line">    &lt;id&gt;mirrorId&lt;/id&gt;</div><div class="line">    &lt;mirrorOf&gt;repositoryId&lt;/mirrorOf&gt;</div><div class="line">    &lt;name&gt;Human Readable Name for this Mirror.&lt;/name&gt;</div><div class="line">    &lt;url&gt;http://my.repository.com/repo/path&lt;/url&gt;</div><div class="line">  &lt;/mirror&gt;</div><div class="line">   --&gt;</div><div class="line">  &lt;mirror&gt;</div><div class="line">    &lt;id&gt;alimaven&lt;/id&gt;</div><div class="line">    &lt;name&gt;aliyun maven&lt;/name&gt;</div><div class="line">    &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public/&lt;/url&gt;</div><div class="line">    &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;       </div><div class="line">  &lt;/mirror&gt;</div><div class="line">&lt;/mirrors&gt;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="http://www.cnblogs.com/sword-successful/p/6408281.html">blog1</a><br></p>
-        
-          <a class="article-more-a" href="/2017/02/22/bug/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小章鱼</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">bug</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/bug/" class="article-tag-list-link color4">bug</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/22/bug/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-mysql2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/19/mysql2/">数据库学习笔记二</a>
-    </h1>
-  
-
-        
-        <a href="/2017/02/19/mysql2/" class="archive-article-date">
-  	<time datetime="2017-02-19T14:45:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Mysql-视图"><a href="#Mysql-视图" class="headerlink" title="Mysql 视图"></a>Mysql 视图</h2><p>概念： 视图可以包含表中的所有列，或者仅包含选定的列。视图可以创建自一个或者多个表，这取决于创建该视图的 SQL 语句的写法。视图，是一种虚拟的表，数据库只存放了视图的定义，并没有存放视图中的数据。<br>优点：用户可以不用看到整个数据库表中的数据，而只关心对自己有用的数据即可。</p>
-<p>作用：</p>
-<ul>
-<li>简单性：所见即所需</li>
-<li>安全性：授权</li>
-<li>逻辑数据独立性：程序与数据库独立</li>
-</ul>
-<p>视图与查询的区别：</p>
-<p>视图和查询都是用由sql语句组成,这是他们相同的地方,但是视图和查询有着本质区别：<br>它们的区别在于：</p>
-<ul>
-<li>存储上的区别：视图存储为数据库设计的一部分,而查询则不是</li>
-<li>更新限制的要求不一样<br>要注意：因为视图来自于表,所以通过视图可以间接对表进行更新,我们也可以通过update语句对表进行更新,但是对视图和查询更新限制是不同的,</li>
-<li>排序结果：通过sql语句,可以对一个表进行排序,而视图则不行。</li>
-</ul>
-        
-          <a class="article-more-a" href="/2017/02/19/mysql2/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小章鱼</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/数据库/" class="article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/19/mysql2/">展开全文 >></a>
         </p>
       
 
@@ -1170,15 +1176,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">TreeMap</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color4">bug</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1186,19 +1184,31 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">paln</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">bug</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
+                <a href="javascript:void(0)" class="js-tag color5">Tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">paln</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hash</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1214,15 +1224,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">reading</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
               </li>
              
               <li class="article-tag-list-item">
