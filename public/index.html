@@ -151,6 +151,82 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-springaop" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/10/springaop/">spring aop 使用以及代理原理</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/10/springaop/" class="archive-article-date">
+  	<time datetime="2017-03-10T11:09:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>又到了紧张刺激的前言了，前一段时间整理了hashmap以及解决hash碰撞的方法，然后今天在阿里第一次面试的时候就问到了。虽然这个回答的还可以，但是我对自己还是失望的，面试问我spring和主要概念aop我知不知道。讲真的，我老早就说准备看看，而且我还看过一遍，但是就只是那么匆匆一看，没有怎么在意。果然就像考试，只有仔细认真的人才会一直取得高分。所以我今天一天都在研究spring aop。</p>
+<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><p>面向切面区别于面向对象，由于琐碎的逻辑需要嵌入整体的项目框架。如果是面向对象需要在相应的对象中修改代码，这样显然很麻烦，而且琐碎的逻辑耦合在了项目中。如果使用面向切面，就可以减少耦合。通过面向切面可以不用修改原有项目代码，而是在外部找到添加代码，找到需要嵌入逻辑的地方标记好，那么运行的时候就会插入相应的代码。比如我们常用的如事务管理、安全检查、缓存、对象池管理。AOP 实现的关键就在于 AOP 框架自动创建的 AOP 代理.</p>
+<h2 id="实践出真知"><a href="#实践出真知" class="headerlink" title="实践出真知"></a>实践出真知</h2><p>启用 Spring 对 @AspectJ 方面配置的支持<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">在config类中添加@EnableAspectJAutoProxy注解</div><div class="line">当启动了 @AspectJ 支持后，只要我们在 Spring 容器中配置一个带 @Aspect 注释的 Bean，Spring 将会自动识别该 Bean，并将该 Bean 作为切面 Bean 处理。</div></pre></td></tr></table></figure></p>
+<p>定义切面<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">@Aspect</div><div class="line">public class TestAspect &#123;</div><div class="line">    @Before(&quot;execution(* com.example.web.LoginControlller.well(..))&quot;)</div><div class="line">    public void logBefore(JoinPoint joinPoint) &#123;</div><div class="line"></div><div class="line">        System.out.println(&quot;logBefore() is running!&quot;);</div><div class="line">        System.out.println(&quot;hijacked : &quot; + joinPoint.getSignature().getName());</div><div class="line">        System.out.println(&quot;******&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @After(&quot;execution(* com.example.web.LoginControlller.well(..))&quot;)</div><div class="line">    public void logAfter(JoinPoint joinPoint) &#123;</div><div class="line"></div><div class="line">        System.out.println(&quot;logAfter() is running!&quot;);</div><div class="line">        System.out.println(&quot;hijacked : &quot; + joinPoint.getSignature().getName());</div><div class="line">        System.out.println(&quot;******&quot;);</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @AfterReturning(</div><div class="line">            pointcut = &quot;execution(* com.example.web.LoginControlller.well(..)))&quot;,</div><div class="line">            returning= &quot;result&quot;)</div><div class="line">    public void logAfterReturning(JoinPoint joinPoint, Object result) &#123;</div><div class="line"></div><div class="line">        System.out.println(&quot;logAfterReturning() is running!&quot;);</div><div class="line">        System.out.println(&quot;hijacked : &quot; + joinPoint.getSignature().getName());</div><div class="line">        System.out.println(&quot;Method returned value is : &quot; + result);</div><div class="line">        System.out.println(&quot;******&quot;);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+        
+          <a class="article-more-a" href="/2017/03/10/springaop/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小章鱼</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/10/springaop/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-hashmap" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -959,117 +1035,6 @@
 
 
   
-    <article id="post-javahigh" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/23/javahigh/">java 算法 （排序算法 冒泡排序）</a>
-    </h1>
-  
-
-        
-        <a href="/2017/02/23/javahigh/" class="archive-article-date">
-  	<time datetime="2017-02-23T15:02:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h2><p> ps:今天真的是被git弄的稀里糊涂了一天，弄到现在还在实验室，我都怀疑自己的认真劲头了😂。<br> 以前觉得自己没有做技术的耐性，无法静静的呆在自己的电脑前。那个时候坐在电脑前都会流眼泪，那个时候就对自己说：是的我不合适做技术，然而读研的路上感觉自己的性格改变了很多，不敢说非常踏实，但是目前来说，静静地看着技术文档和书籍，常常能获得快感，就像现在已经过了12点，我在“奋笔疾书”。解决bug的时候有那么一丝丝成就感，不知道是不是自己越来越适合做技术了，感觉自己每天过的越来越充实和快乐，只要今天的自己比昨天的自己更强大。</p>
-<h2 id="正题"><a href="#正题" class="headerlink" title="正题"></a>正题</h2><ul>
-<li>排序算法 分类<ul>
-<li>交换排序<ul>
-<li>冒泡排序</li>
-<li>快速排序</li>
-</ul>
-</li>
-<li>选择排序<ul>
-<li>选择排序</li>
-<li>堆排序</li>
-</ul>
-</li>
-<li>插入排序<ul>
-<li>插入排序</li>
-<li>shell排序</li>
-</ul>
-</li>
-<li>合并排序</li>
-</ul>
-</li>
-</ul>
-<h4 id="冒泡排序（Bubble-Sort）"><a href="#冒泡排序（Bubble-Sort）" class="headerlink" title="冒泡排序（Bubble Sort）"></a>冒泡排序（Bubble Sort）</h4><p>思想：冒泡排序需要遍历多遍数组，在每次遍历🀄比较相邻的元素。较小值像“气泡”一样上浮，较大的值沉向底部。<br>步骤：</p>
-<ul>
-<li>对数组中的各个数据，依次比较相邻的两个数据大小</li>
-<li>如果前面的数据大于后面的数据，就交换两个数据。这样可以找出最小的。</li>
-<li>依次用同样的方法，排序。<br>时间：$\dfrac {n\left( n-1\right) } {2}=O\left( n^{2}\right)$</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">主要代码：</div><div class="line">package sort;</div><div class="line"></div><div class="line">import UtilAlgorithm.Main;</div><div class="line">import UtilAlgorithm.Util;</div><div class="line"></div><div class="line">/**</div><div class="line"> * Created by xiezhanghua on 2017/2/23.</div><div class="line"> */</div><div class="line">public class Sort &#123;</div><div class="line">    public static int[] bubleSort(int[] arr) &#123;</div><div class="line">        System.out.println(&quot;冒泡排序前的数组为：&quot;);</div><div class="line">        for (int i : arr) &#123;</div><div class="line">            System.out.print(i + &quot; &quot;);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        for (int i = 1; i &lt; arr.length; i++) &#123;</div><div class="line">            for (int j = 0; j &lt; arr.length - i; j++) &#123;</div><div class="line">                if (arr[j] &gt; arr[j + 1]) &#123;</div><div class="line">                    int temp = arr[j];</div><div class="line">                    arr[j] = arr[j + 1];</div><div class="line">                    arr[j + 1] = temp;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        System.out.println(&quot;&quot;);</div><div class="line">        System.out.println(&quot;冒泡排序后的数组为：&quot;);</div><div class="line">        for (int i : arr) &#123;</div><div class="line">            System.out.print(i + &quot; &quot;);</div><div class="line">        &#125;</div><div class="line">        return arr;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="参考书籍和链接"><a href="#参考书籍和链接" class="headerlink" title="参考书籍和链接"></a>参考书籍和链接</h2><p> 《java 常用算法手册》<br> 《java 语言程序设计》</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小章鱼</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/java/" class="article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/23/javahigh/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1176,11 +1141,15 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">bug</a>
+                <a href="javascript:void(0)" class="js-tag color4">小章鱼</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">小章鱼</a>
+                <a href="javascript:void(0)" class="js-tag color5">paln</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">bug</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1204,10 +1173,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">paln</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hash</a>
               </li>
              
@@ -1224,15 +1189,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">reading</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1240,11 +1205,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">测试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+                <a href="javascript:void(0)" class="js-tag color3">reading</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1257,6 +1218,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">测试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">

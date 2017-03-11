@@ -12,7 +12,7 @@ tags: [小章鱼, java, reading]
 [并发编程网](http://ifeve.com/)
 [JDK8](http://docs.oracle.com/javase/8/docs/api/index.html)
 [JDK6](http://download.java.net/jdk/jdk-api-localizations/jdk-api-zh-cn/builds/latest/html/zh_CN/api/)
-
+[ @SpringBootApplication的使用](http://blog.csdn.net/u013473691/article/details/52353923)
 
 [mysql 忘记 root 密码](http://lycy521.blog.51cto.com/3492922/1333172)
 ## 数据库
