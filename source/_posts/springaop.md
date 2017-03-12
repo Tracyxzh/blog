@@ -53,6 +53,8 @@ public class TestAspect {
 }
 ```
 <!--more-->
+
+
 定义控制器
 ```
 @RestController
@@ -298,7 +300,7 @@ public Object getProxy(ClassLoader classLoader) {
 主要注意的地方就是Enhancer类的使用.在创建的时候，我们要使用一个 Enhance 类的对象，而不再是 Proxy，需要为其实例指定一个父类，也就是我们 的目标对象。这样，我们新创建出来的对象就是目标对象的子类，有目标对象的一样。除此之外，还要指定一个回调函数，这个函数就和Proxy的 invoke()类似。
 
 总体来说，使用CGlib的方法和使用Proxy的方法差不多，只是Proxy创建出来的代理对象和目标对象都实现了同一个接口。而CGlib的方法则是直接继承了目标对象。
-
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=412016547&auto=1&height=32"></iframe>
 
 [Enhancer](https://github.com/cglib/cglib/wiki/Tutorial)
 

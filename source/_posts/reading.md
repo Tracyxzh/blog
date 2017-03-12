@@ -15,6 +15,7 @@ tags: [小章鱼, java, reading]
 [ @SpringBootApplication的使用](http://blog.csdn.net/u013473691/article/details/52353923)
 
 [mysql 忘记 root 密码](http://lycy521.blog.51cto.com/3492922/1333172)
+[面试](http://hanchun.tech/2017/03/06/%E4%B8%80%E4%BA%9B%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%8E%86%E7%9A%84%E6%95%B4%E7%90%86/#more)
 ## 数据库
 《Mysql快速入门》 纸质书籍
 《事务处理的技术和概念》 这个学习的文档使电子书籍

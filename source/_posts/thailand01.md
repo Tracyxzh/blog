@@ -75,6 +75,9 @@ ps：最近在忙于学业，就一直没有整理我的游记，这里先贴出
 小女孩问（xzh）性别
 袁枫林裤子开档（被汪明拧坏的
 
+<!--more-->
+
+
 ## 1.19
 地点：清迈
 1.早饭：泡面便宜又好吃，红色的味道有点怪159B
@@ -139,6 +142,8 @@ the chef 800B，鱿鱼丝
 5.国内机可能早飞
 6.机场可寄存东西75B一件
 7.6号门A1
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=31234247&auto=1&height=66"></iframe>
 ## 买东西：
 雪肌精乳液
 欧莱雅口红 唇釉V103
