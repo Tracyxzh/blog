@@ -4,6 +4,13 @@ date: 2017-02-17 14:31:59
 categories: travel                    #文章文类
 tags: [小章鱼, java, reading]
 ---
+## 学会使用搜索引擎
+[学会使用搜索引擎](https://www.zhihu.com/question/20161362)
+[十大高明的Google搜索技巧](http://www.williamlong.info/archives/728.html)
+
+## 提问
+[敬请:智慧的提问](http://wiki.woodpecker.org.cn/moin/AskForHelp)
+[智慧的提问](https://gist.github.com/zer4tul/95ffaa741c836dc6ab3b)
 
 这里记录下每个阶段的学习资料
 
@@ -15,9 +22,27 @@ tags: [小章鱼, java, reading]
 [ @SpringBootApplication的使用](http://blog.csdn.net/u013473691/article/details/52353923)
 
 [mysql 忘记 root 密码](http://lycy521.blog.51cto.com/3492922/1333172)
-[面试](http://hanchun.tech/2017/03/06/%E4%B8%80%E4%BA%9B%E6%A0%A1%E6%8B%9B%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%8E%86%E7%9A%84%E6%95%B4%E7%90%86/#more)
-## 数据库
-《Mysql快速入门》 纸质书籍
-《事务处理的技术和概念》 这个学习的文档使电子书籍
 《java编程思想》 纸质书籍
 
+<!--more-->
+## web
+《java web 开发》
+
+
+## spring
+《Spring实战》
+
+
+## Mysql
+《Mysql快速入门》 纸质书籍
+《事务处理的技术和概念》 这个学习的文档使电子书籍
+
+
+## 操作系统
+《计算机操作系统》
+陈渝教学视频
+
+
+## 编译原理
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=2328860&auto=1&height=66"></iframe>
