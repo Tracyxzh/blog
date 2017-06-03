@@ -151,6 +151,199 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-oracleFunction" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/03/oracleFunction/">oracle 内置函数</a>
+    </h1>
+  
+
+        
+        <a href="/2017/06/03/oracleFunction/" class="archive-article-date">
+  	<time datetime="2017-06-03T03:06:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="写在前面的话"><a href="#写在前面的话" class="headerlink" title="写在前面的话"></a>写在前面的话</h2><p>由于有的时候需要对于字符串或则日期使用一些内置的函数，但是平时google的时候也比较麻烦，这里干脆做个记录，方便以后自己翻阅。</p>
+<h2 id="数值函数"><a href="#数值函数" class="headerlink" title="数值函数"></a>数值函数</h2><ul>
+<li>ABS(n) 取绝对值</li>
+<li>MOD(n2, n1) 取n2除以n1的余数</li>
+<li>SIGN(n) 返回参数n的符号。1 0 -1</li>
+</ul>
+<h2 id="三角函数"><a href="#三角函数" class="headerlink" title="三角函数"></a>三角函数</h2><ul>
+<li>COS(n) n为弧度</li>
+<li>ACOS(n)</li>
+<li>SIN(n)</li>
+<li>TAN(n)</li>
+</ul>
+<h2 id="指数／对数函数"><a href="#指数／对数函数" class="headerlink" title="指数／对数函数"></a>指数／对数函数</h2><ul>
+<li>SQRT(n) n的平方根</li>
+<li>POEWR(n2,n1) n2的n1次幂</li>
+<li>EXP(n) e的n次幂</li>
+<li>LOG(n1, n2) n1位底的n2对数</li>
+</ul>
+<h2 id="四舍五入函数"><a href="#四舍五入函数" class="headerlink" title="四舍五入函数"></a>四舍五入函数</h2><ul>
+<li>ROUND(n，integer) 四舍五入精确到小数点的integer位</li>
+<li>TRUNC(n， integer) 截取到小数点的integer位</li>
+</ul>
+<h2 id="字符函数-参数都是字符类型的参数单引号"><a href="#字符函数-参数都是字符类型的参数单引号" class="headerlink" title="字符函数 参数都是字符类型的参数单引号"></a>字符函数 参数都是字符类型的参数单引号</h2><p>LENGTH(char) 返回指定的字符长度</p>
+<h3 id="字符串截取"><a href="#字符串截取" class="headerlink" title="字符串截取"></a>字符串截取</h3><p>参数(char,position[,substring_length])<br>char：原始字符串<br>position：要截取字符串的开始位置<br>substring_length：截取的长度<br>SUBSTR：以字符为单位<br>SUBSTRB：以字节为单位<br>SUBSTRC：以unicode为单位<br>SUBSTR2：以UCS2代码点为单位<br>SUBSTR4：以UCS4代码点为单位</p>
+<h3 id="字符串连接函数"><a href="#字符串连接函数" class="headerlink" title="字符串连接函数"></a>字符串连接函数</h3><p>CONCAT(char1,char2)函数 效果与“||”相似</p>
+<h3 id="字符串搜索函数"><a href="#字符串搜索函数" class="headerlink" title="字符串搜索函数"></a>字符串搜索函数</h3><p>参数(string,substring[,position[,occurrence]])<br>string：待搜索的字符串<br>substring：要搜索的字符串<br>position：搜索开始的位置,默认是1<br>occuurrence：substring第几次出现，默认是1<br>INSTR：以字符为单位<br>INSTRB：以字节为单位<br>INSTRC：以unicode为单位<br>INSTR2：以UCS2代码点为单位<br>INSTR4：以UCS4代码点为单位</p>
+<h3 id="字母大小转换函数"><a href="#字母大小转换函数" class="headerlink" title="字母大小转换函数"></a>字母大小转换函数</h3><p>UPPER(char)<br>LOWER(char)<br>INITCAP(char) 所有单词首字母大写</p>
+<h3 id="替换字符函数"><a href="#替换字符函数" class="headerlink" title="替换字符函数"></a>替换字符函数</h3><p>REPLACE(char,serch_string[,replace_string])<br>char: 表示搜索的目标字符串<br>search_string: 在目标中要搜索的字符串<br>replace_string: 该参数可选，不填的话就是删除搜索的字符串</p>
+<h3 id="字符串的填充"><a href="#字符串的填充" class="headerlink" title="字符串的填充"></a>字符串的填充</h3><p>RPAD(expr1,n[,expr2])<br>功能： 在字符串expr1的右边用字符串expr2填充，不填写expr2的话，就用空格填充<br>LPAD(expr1,n[,expr2])<br>功能： 在字符串expr1的左边用字符串expr2填充，不填写expr2的话，就用空格填充</p>
+<h3 id="删除字符串首尾指定字符的函数"><a href="#删除字符串首尾指定字符的函数" class="headerlink" title="删除字符串首尾指定字符的函数"></a>删除字符串首尾指定字符的函数</h3><p>TRIM([LEADING|TRAILING|BOTH][trim_character FROM] trim_source)<br>LEADING：删除trim_source的前缀字符<br>TRAILING：删除trim_source的后缀字符<br>trim_character：删除指定的字符，默认删除空格<br>trim_source：被操作的字符串</p>
+<h2 id="日期函数"><a href="#日期函数" class="headerlink" title="日期函数"></a>日期函数</h2><h3 id="系统时间"><a href="#系统时间" class="headerlink" title="系统时间"></a>系统时间</h3><p>SYSDATE SYSTIMESTAMP</p>
+<h3 id="数据库时区函数"><a href="#数据库时区函数" class="headerlink" title="数据库时区函数"></a>数据库时区函数</h3><p>DBTIMEZONE</p>
+<h3 id="为日期加上指定月份函数"><a href="#为日期加上指定月份函数" class="headerlink" title="为日期加上指定月份函数"></a>为日期加上指定月份函数</h3><p>ADD_MONTHS(data,integer)<br>功能： 该函数返回指定的日期加上一个月份数后的日期</p>
+<h2 id="转换函数"><a href="#转换函数" class="headerlink" title="转换函数"></a>转换函数</h2><p>ASCIISTR(char) 将任意字符集的字符串转换为数据库字符集对应的ASCII字符串<br>CAST(expr as type_name) 把expr参数转换成type_name类型</p>
+<h3 id="数值转换成字符串函数"><a href="#数值转换成字符串函数" class="headerlink" title="数值转换成字符串函数"></a>数值转换成字符串函数</h3><p>参数(n,[,fmt[,nlsparam]])<br>n: 数值或者日期<br>fmt：要转换的格式<br>TO_CHAR(number)<br>TO_CHAR(data)</p>
+<h3 id="字符串转日期函数"><a href="#字符串转日期函数" class="headerlink" title="字符串转日期函数"></a>字符串转日期函数</h3><p>TO_DATA(char[,fmt[,nlsparam]])<br>char:待转换的字符<br>fmt：表示转换的格式<br>nlsparam：控制格式化时使用的语言类型</p>
+<h3 id="每文音乐推荐"><a href="#每文音乐推荐" class="headerlink" title="每文音乐推荐"></a>每文音乐推荐</h3><p>评论：<br>无心廿曰：我懒到连喜欢的人，都懒的换<br>菮煕：还是老妈说的话最经典，她说：“你们这代人呐，就是活的太明白了，所以什么都得不到。我们当年什么都糊里糊涂，该结婚结婚，该工作工作，现在什么都有。”</p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=1615656&auto=1&height=66"></iframe>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">oracle</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/03/oracleFunction/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-viewOracle" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/03/viewOracle/">视图 -- 数据库中的虚拟表</a>
+    </h1>
+  
+
+        
+        <a href="/2017/06/03/viewOracle/" class="archive-article-date">
+  	<time datetime="2017-06-03T02:19:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="写在前面的话"><a href="#写在前面的话" class="headerlink" title="写在前面的话"></a>写在前面的话</h2><p>最近在银联实习，实习的内容是基于大数据平台的项目。目前的主要工作内容是数据准备，这需要接触到存储过程以及spark sql，存储过程中还有一些视图。对于存储过程了解程度由于前段时间学习过了，所以基本可以了，所以今天准备学习下视图这方面的知识。</p>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>视图：是一个基于一个或者多个表的逻辑表，视图本身不包括任何数据。</p>
+<h2 id="数据源"><a href="#数据源" class="headerlink" title="数据源"></a>数据源</h2><ul>
+<li>单一表的子集</li>
+<li>多表操作的结果集</li>
+<li>视图的子集</li>
+</ul>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">CREATE [ OR REPLACE ] [ [ ON ] FORCE ] VIEW</div><div class="line">[ schema. ] view</div><div class="line">[ (alias, ...) inline_constraint(s) ]</div><div class="line">[ out_of_line_constrain(s) ]</div><div class="line">AS subquery</div><div class="line">[</div><div class="line">	WITH &#123; READ ONLY | CHECK OPTION [ CONSTRAINT constraint ] &#125;</div><div class="line">]</div><div class="line">[说明]</div><div class="line">OR REPLACE:创建视图的时候如果存在同名视图则覆盖</div><div class="line">[ ON ] FORCE :表示是否强制创建，如果基表不存在的情况下创建视图会出现错误，强制创建可以先创建视图然后再创建基表。</div><div class="line">[ schema. ] view:视图所属方案或者视图的名称</div><div class="line">[ (alias, ...) inline_constraint(s) ]:视图字段的别名和内联约束</div><div class="line">[ out_of_line_constrain(s) ]:也是约束</div><div class="line">WITH READ ONLY:视图只读</div><div class="line">WITH CHECK OPTION [ CONSTRAINT constraint ]:一旦使用该约束，当视图增加或修改数据时必须满足子查询的条件。</div></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2017/06/03/viewOracle/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">oracle</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/03/viewOracle/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-uml" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -343,11 +536,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小章鱼</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小章鱼</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -419,11 +612,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小章鱼</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小章鱼</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -824,187 +1017,6 @@
 
 
   
-    <article id="post-searchAlgorithm" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/28/searchAlgorithm/">java 算法 （搜索算法 二分排序）</a>
-    </h1>
-  
-
-        
-        <a href="/2017/02/28/searchAlgorithm/" class="archive-article-date">
-  	<time datetime="2017-02-28T12:30:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="二分搜索算法"><a href="#二分搜索算法" class="headerlink" title="二分搜索算法"></a>二分搜索算法</h2><p>二分搜索算法顾名思义就是每次分成两边的搜索算法，这个算法的要求是数据已经是排序过的数据。</p>
-<p>步骤</p>
-<ul>
-<li>排序</li>
-<li>比较中值和搜索值大小，化分搜索范围</li>
-<li>对划分的范围继续搜索</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">/*</div><div class="line">* 不是迭代的二分搜索算法</div><div class="line"> */</div><div class="line">public static int binarySearch(int[] arr, int low, int high,int search) &#123;</div><div class="line">    System.out.println(&quot;&quot;);</div><div class="line">    while (low &lt;= high) &#123;</div><div class="line">        int mid = (low + high) / 2;</div><div class="line">        if (search &gt; arr[mid]) &#123;</div><div class="line">            low = mid + 1;</div><div class="line">            System.out.println(&quot;mid: &quot; + mid + &quot;high: &quot; + high + &quot;low: &quot; + low);</div><div class="line">        &#125; else if (search &lt; arr[mid]) &#123;</div><div class="line">            high = mid - 1;</div><div class="line">            System.out.println(&quot;mid: &quot; + mid + &quot;high: &quot; + high + &quot;low: &quot; + low);</div><div class="line">        &#125; else &#123;</div><div class="line">            System.out.println(&quot;找到的数据在第&quot; + mid + &quot;值为：&quot; + arr[mid]);</div><div class="line">            return arr[mid];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    System.out.println(&quot;无此数据&quot;);</div><div class="line">    return -1;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/*</div><div class="line">* 二分迭代搜索算法</div><div class="line"> */</div><div class="line">public static int binaryItratorSearch(int[] arr, int low, int high, int search) &#123;</div><div class="line">    System.out.println(&quot;&quot;);</div><div class="line">    if (low &lt;= high) &#123;</div><div class="line">        int mid = (low + high) / 2;</div><div class="line">        if (search &lt; arr[mid]) &#123;</div><div class="line">            high = mid -1;</div><div class="line">            System.out.println(&quot;mid: &quot; + mid + &quot;high: &quot; + high + &quot;low: &quot; + low);</div><div class="line">            binaryItratorSearch(arr, low, high, search);</div><div class="line">        &#125; else if (search &gt; arr[mid]) &#123;</div><div class="line">            low = mid + 1;</div><div class="line">            System.out.println(&quot;mid: &quot; + mid + &quot;high: &quot; + high + &quot;low: &quot; + low);</div><div class="line">            binaryItratorSearch(arr, low, high, search);</div><div class="line">        &#125; else &#123;</div><div class="line">            System.out.println(&quot;找到的数据在第&quot; + mid + &quot;值为：&quot; + arr[mid]);</div><div class="line">            return arr[mid];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    System.out.println(&quot;无此数据&quot;);</div><div class="line">    return -1;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小章鱼</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">algorithm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/算法/" class="article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/28/searchAlgorithm/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-javaPaper" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/28/javaPaper/">java 面试遇到的问题</a>
-    </h1>
-  
-
-        
-        <a href="/2017/02/28/javaPaper/" class="archive-article-date">
-  	<time datetime="2017-02-28T04:56:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>前言：突然发现我现在写blog喜欢写些原因，最近有可能是在图书馆听着民谣，效率更高吧。我写这个就是想着把自己面试遇到的一些小问题整理下，方便自己以后看看，以方便以后别人面试的时候遇到。</p>
-<h2 id="java-初始化块、静态初始化块、构造函数初始化"><a href="#java-初始化块、静态初始化块、构造函数初始化" class="headerlink" title="java 初始化块、静态初始化块、构造函数初始化"></a>java 初始化块、静态初始化块、构造函数初始化</h2><p><a href="https://www.caoqq.net/java-class-initialization.html">理解Java中的类初始化</a></p>
-<h2 id="static-关键字"><a href="#static-关键字" class="headerlink" title="static 关键字"></a>static 关键字</h2><ul>
-<li>当声明一个事物为static时，就意味着这个域或方法不会与包含它的类的任何对象实例关联在一起。</li>
-<li>即使从未创建某个类的任何对象，也可以调用其static方法或访问其static域</li>
-</ul>
-        
-          <a class="article-more-a" href="/2017/02/28/javaPaper/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小章鱼</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/java/" class="article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/28/javaPaper/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1111,6 +1123,18 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">小章鱼</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">paln</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
@@ -1124,18 +1148,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">小章鱼</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">paln</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1179,11 +1191,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">oracle</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">reading</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1195,10 +1215,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">travel</a>
               </li>
              
@@ -1207,15 +1223,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">事务处理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">uml</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事务处理</a>
               </li>
             
             <div class="clearfix"></div>
