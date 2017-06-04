@@ -33,7 +33,6 @@ LENGTH(char) 返回指定的字符长度
 
 
 <!--- more -->
-
 ### 字符串截取 
 参数(char,position[,substring_length]) 
 char：原始字符串
