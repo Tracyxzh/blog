@@ -151,6 +151,79 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-collaborativeFiltering" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/06/collaborativeFiltering/">协同过滤</a>
+    </h1>
+  
+
+        
+        <a href="/2017/06/06/collaborativeFiltering/" class="archive-article-date">
+  	<time datetime="2017-06-06T13:50:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在实习数据挖掘的工作，但是做的事情就是将oracle的存储过程改成spark sql，这里坦白下我的Scala还在学习的路上。但是我的学习习惯是刨根问底，数据挖掘最终用到的算法才是最终吸引我的。而且最近真的喜欢用网易云听歌，一边听着JBL中放着的歌，一边看着算法，想象自己喝着红酒🍷。所以今天看看推荐算法是如何实现的。</p>
+<h2 id="协同过滤-collaborative-filtering"><a href="#协同过滤-collaborative-filtering" class="headerlink" title="协同过滤 collaborative filtering"></a>协同过滤 collaborative filtering</h2><p>之所以称为“协同”是因为该方法基于其他用户进行推荐。实际上，人们通过协同合作来形成推荐。其工作流程如下：假设要完成的任务是推荐一本书。那么会在网站上搜索与你兴趣类似的其他用户。一旦找到这个用户，就看看这个用户所喜欢的书然后将它们推荐给你。<br>找到相似用户的方法一般是通过距离。<br>距离一般化：明氏距离（Minkowski Distance）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$\dfrac b(x,y)=(\sum_&#123;k=1&#125;^&#123;n&#125;\left |  \right x_&#123;k&#125;-y_&#123;k&#125;|)^&#123;r^&#123;1/r&#125;&#125;$</div><div class="line">$\dfrac &#123;n\left( n-1\right) &#125; &#123;2&#125;=O\left( n^&#123;2&#125;\right)$</div></pre></td></tr></table></figure></p>
+<p>其中：</p>
+<ul>
+<li>r=1时，上述公式计算的就是曼哈顿距离</li>
+<li>r=2时，上述公式计算的就是欧式距离</li>
+<li>r=3时，上述公式计算的是上确界距离</li>
+</ul>
+<p>缺点：r越到，某一维较大差异对最终差值的影响越大。</p>
+        
+          <a class="article-more-a" href="/2017/06/06/collaborativeFiltering/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据挖掘， 算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/06/collaborativeFiltering/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-dataWarehouse" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -868,101 +941,6 @@
 
 
   
-    <article id="post-hash" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/07/hash/">几种解决hash碰撞的方法</a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/07/hash/" class="archive-article-date">
-  	<time datetime="2017-03-07T12:21:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>又到了胡说八道时间，今天晚上接到携程电话面试（暑期实习面试），但是我正在填写银联数据的试卷（话说我面试已经过了，只要笔试过了就可以了，然而接了个电话，gg）。为什么写这个是因为今天面试问到我如何解决hash碰撞，学习知识才是王道。</p>
-<h2 id="哈希碰撞"><a href="#哈希碰撞" class="headerlink" title="哈希碰撞"></a>哈希碰撞</h2><p>哈希碰撞是不同的key通过哈希函数以后得到了相同的value值。原理图如下：</p>
-<p><img src="/2017/03/07/hash/pengzhuang.png" alt="哈希碰撞"></p>
-<h2 id="拉链法"><a href="#拉链法" class="headerlink" title="拉链法"></a>拉链法</h2><p>Java标准库的HashMap和HashTable基本上就是用拉链法实现的。拉链法的实现比较简单，将链表和数组相结合。也就是说创建一个链表数组，数组中每一格就是一个链表。若遇到哈希冲突，则将冲突的值加到链表中即可。原理图如下：</p>
-<p><img src="/2017/03/07/hash/lianbiao.png" alt="hashmap和hashtable底层存储结构"></p>
-<p>步骤：</p>
-<ul>
-<li>通过key算出hash值</li>
-<li>通过hash值找到地址</li>
-<li>如果地址为空，直接添加</li>
-<li>如果地址不为空，插入表头</li>
-</ul>
-<h2 id="线性探测法"><a href="#线性探测法" class="headerlink" title="线性探测法"></a>线性探测法</h2><p>线性探索法是最简单的解决hash碰撞的方法。他把散列表当作一个循环数组看待。原理图如下：</p>
-<p><img src="/2017/03/07/hash/tance.png" alt="线性探测法原理图"></p>
-<p>步骤：</p>
-<ul>
-<li>通过key算出hash值</li>
-<li>通过hash值找到地址</li>
-<li>如果地址为空，直接添加</li>
-<li>如果地址不为空，地址++，回到上一步，循环的顺序是0-n-1-0</li>
-</ul>
-<h2 id="双重哈希法"><a href="#双重哈希法" class="headerlink" title="双重哈希法"></a>双重哈希法</h2><p>hi=(h(key)+ih1(key))％m 0≤i≤m-1 //即di=i*h1(key) ，也就是使用两个哈希函数</p>
-<h2 id="再哈希法"><a href="#再哈希法" class="headerlink" title="再哈希法"></a>再哈希法</h2><p>简单的点说就是如果hash函数1发生冲突就换一个hash函数2</p>
-<h2 id="建立公共溢出区"><a href="#建立公共溢出区" class="headerlink" title="建立公共溢出区"></a>建立公共溢出区</h2><p>这种方法的基本思想是：将哈希表分为基本表和溢出表两部分，凡是和基本表发生冲突的元素，一律填入溢出表</p>
-<p>##参考链接<br><a href="http://threezj.com/2016/03/28/%E7%94%A8%E6%8B%89%E9%93%BE%E6%B3%95%E5%92%8C%E7%BA%BF%E6%80%A7%E6%8E%A2%E6%B5%8B%E6%B3%95%E8%A7%A3%E5%86%B3%E5%93%88%E5%B8%8C%E5%86%B2%E7%AA%81/" target="_blank" rel="external">blog1</a><br><a href="http://www.jianshu.com/p/eb335abc88dd" target="_blank" rel="external">blog2</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hash</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/07/hash/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1105,6 +1083,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据挖掘， 算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据挖掘</a>
               </li>
              
@@ -1240,7 +1222,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">一直努力成长的小章鱼🐟🐟</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">这种简单的练习如果持之以恒，就会获得某种神奇的力量。在获得之前，它很神奇，但是获得之后，却也平淡。--铃木俊隆</div>
   	  	
     	</section>
     
