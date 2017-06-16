@@ -172,14 +172,22 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在实习数据挖掘的工作，但是做的事情就是将oracle的存储过程改成spark sql，这里坦白下我的Scala还在学习的路上。但是我的学习习惯是刨根问底，数据挖掘最终用到的算法才是最终吸引我的。而且最近真的喜欢用网易云听歌，一边听着JBL中放着的歌，一边看着算法，想象自己喝着红酒🍷。所以今天看看推荐算法是如何实现的。</p>
-<h2 id="协同过滤-collaborative-filtering"><a href="#协同过滤-collaborative-filtering" class="headerlink" title="协同过滤 collaborative filtering"></a>协同过滤 collaborative filtering</h2><p>之所以称为“协同”是因为该方法基于其他用户进行推荐。实际上，人们通过协同合作来形成推荐。其工作流程如下：假设要完成的任务是推荐一本书。那么会在网站上搜索与你兴趣类似的其他用户。一旦找到这个用户，就看看这个用户所喜欢的书然后将它们推荐给你。<br>找到相似用户的方法一般是通过距离。<br>距离一般化：明氏距离（Minkowski Distance）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$\dfrac b(x,y)=(\sum_&#123;k=1&#125;^&#123;n&#125;\left |  \right x_&#123;k&#125;-y_&#123;k&#125;|)^&#123;r^&#123;1/r&#125;&#125;$</div><div class="line">$\dfrac &#123;n\left( n-1\right) &#125; &#123;2&#125;=O\left( n^&#123;2&#125;\right)$</div></pre></td></tr></table></figure></p>
-<p>其中：</p>
+<h2 id="协同过滤-collaborative-filtering"><a href="#协同过滤-collaborative-filtering" class="headerlink" title="协同过滤 collaborative filtering"></a>协同过滤 collaborative filtering</h2><p>之所以称为“协同”是因为该方法基于其他用户进行推荐。实际上，人们通过协同合作来形成推荐。其工作流程如下：假设要完成的任务是推荐一本书。那么会在网站上搜索与你兴趣类似的其他用户。一旦找到这个用户，就看看这个用户所喜欢的书然后将它们推荐给你。<br>找到相似用户的方法一般是通过距离。<br>距离一般化：明氏距离（Minkowski Distance）<br>$$b(x,y)=(\sum_{k=1}^{n} |x_{k}-y_{k}|)^{r^{1/r}}$$<br>其中：</p>
 <ul>
 <li>r=1时，上述公式计算的就是曼哈顿距离</li>
 <li>r=2时，上述公式计算的就是欧式距离</li>
 <li>r=3时，上述公式计算的是上确界距离</li>
 </ul>
 <p>缺点：r越到，某一维较大差异对最终差值的影响越大。</p>
+<p>曼哈顿距离函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">def manhattan(rating1, rating2):</div><div class="line">    &quot;&quot;&quot;Computes the Manhattan distance. Both rating1 and rating2 are dictionaries</div><div class="line">       of the form &#123;&apos;The Strokes&apos;: 3.0, &apos;Slightly Stoopid&apos;: 2.5&#125;&quot;&quot;&quot;</div><div class="line">    distance = 0</div><div class="line">    commonRatings = False </div><div class="line">    for key in rating1:</div><div class="line">        if key in rating2:</div><div class="line">            distance += abs(rating1[key] - rating2[key])</div><div class="line">            commonRatings = True</div><div class="line">    if commonRatings:</div><div class="line">        return distance</div><div class="line">    else:</div><div class="line">        return -1 #Indicates no ratings in common</div></pre></td></tr></table></figure></p>
+<p>pearson 相关系数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">def pearson(self, rating1, rating2):</div><div class="line">        sum_xy = 0</div><div class="line">        sum_x = 0</div><div class="line">        sum_y = 0</div><div class="line">        sum_x2 = 0</div><div class="line">        sum_y2 = 0</div><div class="line">        n = 0</div><div class="line">        for key in rating1:</div><div class="line">            if key in rating2:</div><div class="line">                n += 1</div><div class="line">                x = rating1[key]</div><div class="line">                y = rating2[key]</div><div class="line">                sum_xy += x * y</div><div class="line">                sum_x += x</div><div class="line">                sum_y += y</div><div class="line">                sum_x2 += pow(x, 2)</div><div class="line">                sum_y2 += pow(y, 2)</div><div class="line">        if n == 0:</div><div class="line">            return 0</div><div class="line">        # now compute denominator</div><div class="line">        denominator = (sqrt(sum_x2 - pow(sum_x, 2) / n)</div><div class="line">                       * sqrt(sum_y2 - pow(sum_y, 2) / n))</div><div class="line">        if denominator == 0:</div><div class="line">            return 0</div><div class="line">        else:</div><div class="line">            return (sum_xy - (sum_x * sum_y) / n) / denominator</div></pre></td></tr></table></figure></p>
+<p>余弦相似度<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">def dot_product(v1, v2):</div><div class="line">    return sum(a * b for a, b in zip(v1, v2))</div><div class="line">def similarity(v1, v2):</div><div class="line">    return dot_product(v1, v2) / (magnitude(v1) * magnitude(v2) + .00000000001)</div></pre></td></tr></table></figure></p>
+<p>相似度选择：</p>
+<ul>
+<li>如果数据受到分数贬值（即不同用户使用不同的评价范围）的时候，使用皮尔逊系数</li>
+<li>如果数据稠密（几乎所有都没有零值）且属性值大小十分重要，那么可以使用欧氏距离或者曼哈顿距离</li>
+<li>如果数据稀疏，考虑使用余弦相似度</li>
+</ul>
         
           <a class="article-more-a" href="/2017/06/06/collaborativeFiltering/#more">more >></a>
         
@@ -195,7 +203,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据挖掘， 算法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据挖掘</a>
         		</li>
       		
 		</ul>
@@ -743,11 +755,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小章鱼</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小章鱼</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -819,11 +831,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小章鱼</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小章鱼</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -1047,18 +1059,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">小章鱼</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">paln</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
@@ -1075,15 +1075,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">bug</a>
+                <a href="javascript:void(0)" class="js-tag color4">小章鱼</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color5">paln</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据挖掘， 算法</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1096,6 +1096,18 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据挖掘， 算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">bug</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1135,23 +1147,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">reading</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">测试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1160,6 +1164,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">thailand</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">测试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">

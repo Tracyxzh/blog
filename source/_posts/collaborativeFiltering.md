@@ -1,7 +1,7 @@
 ---
 title: 协同过滤
 date: 2017-06-06 21:50:11
-tags: [数据挖掘， 算法]
+tags: [数据挖掘, 算法]
 ---
 
 ## 前言
@@ -19,11 +19,71 @@ $$b(x,y)=(\sum\_{k=1}^{n} |x\_{k}-y\_{k}|)^{r^{1/r}}$$
 
 缺点：r越到，某一维较大差异对最终差值的影响越大。
 
+曼哈顿距离函数
+```
+def manhattan(rating1, rating2):
+    """Computes the Manhattan distance. Both rating1 and rating2 are dictionaries
+       of the form {'The Strokes': 3.0, 'Slightly Stoopid': 2.5}"""
+    distance = 0
+    commonRatings = False 
+    for key in rating1:
+        if key in rating2:
+            distance += abs(rating1[key] - rating2[key])
+            commonRatings = True
+    if commonRatings:
+        return distance
+    else:
+        return -1 #Indicates no ratings in common
+```
+
+pearson 相关系数
+```
+def pearson(self, rating1, rating2):
+        sum_xy = 0
+        sum_x = 0
+        sum_y = 0
+        sum_x2 = 0
+        sum_y2 = 0
+        n = 0
+        for key in rating1:
+            if key in rating2:
+                n += 1
+                x = rating1[key]
+                y = rating2[key]
+                sum_xy += x * y
+                sum_x += x
+                sum_y += y
+                sum_x2 += pow(x, 2)
+                sum_y2 += pow(y, 2)
+        if n == 0:
+            return 0
+        # now compute denominator
+        denominator = (sqrt(sum_x2 - pow(sum_x, 2) / n)
+                       * sqrt(sum_y2 - pow(sum_y, 2) / n))
+        if denominator == 0:
+            return 0
+        else:
+            return (sum_xy - (sum_x * sum_y) / n) / denominator
+```
+
+余弦相似度
+```
+def dot_product(v1, v2):
+    return sum(a * b for a, b in zip(v1, v2))
+def similarity(v1, v2):
+    return dot_product(v1, v2) / (magnitude(v1) * magnitude(v2) + .00000000001)
+```
+
+相似度选择：
+* 如果数据受到分数贬值（即不同用户使用不同的评价范围）的时候，使用皮尔逊系数
+* 如果数据稠密（几乎所有都没有零值）且属性值大小十分重要，那么可以使用欧氏距离或者曼哈顿距离
+* 如果数据稀疏，考虑使用余弦相似度
 
 <!-- more -->
 
 ## 参考书籍和链接
 《写给程序员的数据挖掘》
+[书籍](http://guidetodatamining.com/)
 [博客](http://www.cnblogs.com/luchen927/archive/2012/02/01/2325360.html)
 [知乎](https://www.zhihu.com/question/19971859)
 
