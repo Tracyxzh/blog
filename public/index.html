@@ -151,6 +151,165 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-mathinelearning" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/16/mathinelearning/">机器学习资料记录</a>
+    </h1>
+  
+
+        
+        <a href="/2017/06/16/mathinelearning/" class="archive-article-date">
+  	<time datetime="2017-06-16T15:34:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>机器学习最近才开始上手去弄，但是自己是真的挺喜欢的，发现自己学习的很多东西都能派上用场，所以这里记录下一些好的学习资料，大家一起前进</p>
+<h2 id="现在在看的课程-湾湾老师讲的很通俗易懂"><a href="#现在在看的课程-湾湾老师讲的很通俗易懂" class="headerlink" title="现在在看的课程 湾湾老师讲的很通俗易懂"></a>现在在看的课程 湾湾老师讲的很通俗易懂</h2><p><a href="https://www.youtube.com/watch?v=1xnUlrgJJGo&amp;index=7&amp;list=PLXVfgk9fNX2I7tB6oIINGBmW50rrmFTqf">国立台湾大学林轩田开的两门课：机器学习基石（适合入门），机器学习技法（适合提高）</a></p>
+<h2 id="最近在看的书"><a href="#最近在看的书" class="headerlink" title="最近在看的书"></a>最近在看的书</h2><p>《机器学习实战》<br>《机器学习》周志华 这本书也叫做“西瓜书”<br>《统计学方法》李航</p>
+<h2 id="最近看的文章"><a href="#最近看的文章" class="headerlink" title="最近看的文章"></a>最近看的文章</h2><p><a href="https://medium.com/@kailashahirwar/essential-cheat-sheets-for-machine-learning-and-deep-learning-researchers-efb6a8ebd2e5">一些库</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI0ODcxODk5OA==&amp;mid=2247486196&amp;idx=1&amp;sn=da94fd48b9258034d70399c6c6f35d2a">从神经元到CNN、RNN、GAN…神经网络看本文绝对够了</a></p>
+<h2 id="最近在看的paper"><a href="#最近在看的paper" class="headerlink" title="最近在看的paper"></a>最近在看的paper</h2>
+        
+          <a class="article-more-a" href="/2017/06/16/mathinelearning/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/16/mathinelearning/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-transaction" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/08/transaction/">transaction</a>
+    </h1>
+  
+
+        
+        <a href="/2017/06/08/transaction/" class="archive-article-date">
+  	<time datetime="2017-06-08T02:10:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前段时间在PL/SQL写了一条sql语句，出入了数据，但是数据库中没有数据。后来发现是因为自己对于事务了解不够</p>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>事务是一条有多条sql语句组成的工作逻辑单元，这些语句要么全部执行成功，要么全部不执行，只要有一条sql语句执行失败，则已执行的sql语句会回滚刀执行之前的状态。</p>
+<h2 id="oracle-事务与SQL-Server的区别"><a href="#oracle-事务与SQL-Server的区别" class="headerlink" title="oracle 事务与SQL Server的区别"></a>oracle 事务与SQL Server的区别</h2><p>在SQL Server中，每一个DML语句都具有一个隐式的事务，语句执行结束时事务被自动提交到服务器端，除非显示的通过一条事务语句开始一个事务，在oracle中，当第一条SQL开始执行时，一个新的事务就开始了，除非显示的地使用COMMIT进行提交，或者使用ROLLBACK进行回滚，或者是退出某个oracle工具时，这些事务才结束，否则SQL语句的操作仅在会话级别进行，没有保存到数据库中。</p>
+<h2 id="COMMIT提交事务"><a href="#COMMIT提交事务" class="headerlink" title="COMMIT提交事务"></a>COMMIT提交事务</h2><p>COMMIT语句会结束数据数据库事务，他做了如下几个方面的工作*</p>
+<ul>
+<li>如果对数据库使用了DML语句进行了修改，那么这些修改就会永久写进数据库中，这时其他用户可以立即看到对事务的修改</li>
+<li>加在事务上的所有锁及事务所占有的一切资源自动释放。</li>
+</ul>
+<h2 id="ROLLBACK回滚事务"><a href="#ROLLBACK回滚事务" class="headerlink" title="ROLLBACK回滚事务"></a>ROLLBACK回滚事务</h2><p>使用ROLLBACK的情形一般有：</p>
+<ul>
+<li>误删除了数据或更改了错误的数据，使用回滚帮助恢复原始的数据</li>
+<li>如果触发了一个异常或者sql语句执行失败不能执行事务，使用回滚将数据恢复到初始状态</li>
+</ul>
+<h2 id="SAVEPOINT保存点"><a href="#SAVEPOINT保存点" class="headerlink" title="SAVEPOINT保存点"></a>SAVEPOINT保存点</h2><p>默认情况下，ROLLBACK会撤销整个事务，如果编写一个很大的PL/SQL块，使用了很多的DML语句，此时回滚操作的工作量是很大的。PL/SQL提供了语句级别的回滚，允许将一个大的事务分成很多语句级别的小块，每个小块作为一个保存点。</p>
+<p>ROLLBACk TO SAVEPOINT 命令执行，将会发生如下几件事情：</p>
+<ul>
+<li>从保存点以后所做的工作都被撤销，但是保存点未被释放，如果需要，可以再次撤销该保存点</li>
+<li>自该保存点以后SQL语句就需要的锁和资源都被释放</li>
+<li>虽然撤销到保存点，但是并不是结束整个事务，SQL语句处理挂起状态。</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">oracle</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">事务</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">PL/SQL</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/08/transaction/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-collaborativeFiltering" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -755,11 +914,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小章鱼</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小章鱼</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -774,167 +933,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/03/11/javacopy/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-springaop" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/10/springaop/">spring aop 使用以及代理原理</a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/10/springaop/" class="archive-article-date">
-  	<time datetime="2017-03-10T11:09:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>又到了紧张刺激的前言了，前一段时间整理了hashmap以及解决hash碰撞的方法，然后今天在阿里第一次面试的时候就问到了。虽然这个回答的还可以，但是我对自己还是失望的，面试问我spring和主要概念aop我知不知道。讲真的，我老早就说准备看看，而且我还看过一遍，但是就只是那么匆匆一看，没有怎么在意。果然就像考试，只有仔细认真的人才会一直取得高分。所以我今天一天都在研究spring aop。</p>
-<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><p>面向切面区别于面向对象，由于琐碎的逻辑需要嵌入整体的项目框架。如果是面向对象需要在相应的对象中修改代码，这样显然很麻烦，而且琐碎的逻辑耦合在了项目中。如果使用面向切面，就可以减少耦合。通过面向切面可以不用修改原有项目代码，而是在外部找到添加代码，找到需要嵌入逻辑的地方标记好，那么运行的时候就会插入相应的代码。比如我们常用的如事务管理、安全检查、缓存、对象池管理。AOP 实现的关键就在于 AOP 框架自动创建的 AOP 代理.</p>
-<h2 id="实践出真知"><a href="#实践出真知" class="headerlink" title="实践出真知"></a>实践出真知</h2><p>启用 Spring 对 @AspectJ 方面配置的支持<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">在config类中添加@EnableAspectJAutoProxy注解</div><div class="line">当启动了 @AspectJ 支持后，只要我们在 Spring 容器中配置一个带 @Aspect 注释的 Bean，Spring 将会自动识别该 Bean，并将该 Bean 作为切面 Bean 处理。</div></pre></td></tr></table></figure></p>
-<p>定义切面<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">@Aspect</div><div class="line">public class TestAspect &#123;</div><div class="line">    @Before(&quot;execution(* com.example.web.LoginControlller.well(..))&quot;)</div><div class="line">    public void logBefore(JoinPoint joinPoint) &#123;</div><div class="line"></div><div class="line">        System.out.println(&quot;logBefore() is running!&quot;);</div><div class="line">        System.out.println(&quot;hijacked : &quot; + joinPoint.getSignature().getName());</div><div class="line">        System.out.println(&quot;******&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @After(&quot;execution(* com.example.web.LoginControlller.well(..))&quot;)</div><div class="line">    public void logAfter(JoinPoint joinPoint) &#123;</div><div class="line"></div><div class="line">        System.out.println(&quot;logAfter() is running!&quot;);</div><div class="line">        System.out.println(&quot;hijacked : &quot; + joinPoint.getSignature().getName());</div><div class="line">        System.out.println(&quot;******&quot;);</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @AfterReturning(</div><div class="line">            pointcut = &quot;execution(* com.example.web.LoginControlller.well(..)))&quot;,</div><div class="line">            returning= &quot;result&quot;)</div><div class="line">    public void logAfterReturning(JoinPoint joinPoint, Object result) &#123;</div><div class="line"></div><div class="line">        System.out.println(&quot;logAfterReturning() is running!&quot;);</div><div class="line">        System.out.println(&quot;hijacked : &quot; + joinPoint.getSignature().getName());</div><div class="line">        System.out.println(&quot;Method returned value is : &quot; + result);</div><div class="line">        System.out.println(&quot;******&quot;);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-        
-          <a class="article-more-a" href="/2017/03/10/springaop/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小章鱼</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/10/springaop/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-hashmap" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/07/hashmap/">hashmap 源码分析</a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/07/hashmap/" class="archive-article-date">
-  	<time datetime="2017-03-07T13:49:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我发现了，写博客什么的最有意思的时候还是写前言来的开心。反正就是瞎嗨为什么动笔。为什么写这个是因为今天面试的时候问当了下面这段代码中构造函数中的参数数是干嘛用的，问这个问题我当时很羞愧，其实有的时候自己也会去问为什么有这么多构造函数，具体应用场景是什么，然后就是没有刨根问底的精神。现在我就来刨根问底下也不晚吧，😂</p>
-<h2 id="所问代码"><a href="#所问代码" class="headerlink" title="所问代码"></a>所问代码</h2><p>可以看到构造函数中都可以传入参数<br><img src="/2017/03/07/hashmap/gouzao.png" alt="HashMap构造函数"></p>
-<ul>
-<li>threshold：阈值，用于判断是否需要调整容量。threshold的值=”容量*加载因子”</li>
-<li>loadFactor：加载因子，通常设为0.75</li>
-</ul>
-<h2 id="HashMap源代码为例子分析"><a href="#HashMap源代码为例子分析" class="headerlink" title="HashMap源代码为例子分析"></a>HashMap源代码为例子分析</h2><p>Java.util.Hashtable类实现了JAVA中的哈希表，内部采用Node[]数组，每个Node均可作为链表的头，用来解决哈希碰撞。</p>
-<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul>
-<li>基于哈希表的 Map 接口的实现。</li>
-<li>允许使用 null 值和 null 键。</li>
-<li>此类不保证映射的顺序。</li>
-</ul>
-<h2 id="Node类-源码"><a href="#Node类-源码" class="headerlink" title="Node类 源码"></a>Node类 源码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">static class Node&lt;K,V&gt; implements Map.Entry&lt;K,V&gt; &#123;</div><div class="line">    final int hash;</div><div class="line">    final K key;</div><div class="line">    V value;</div><div class="line">    Node&lt;K,V&gt; next;</div><div class="line"></div><div class="line">    Node(int hash, K key, V value, Node&lt;K,V&gt; next) &#123;</div><div class="line">        this.hash = hash;</div><div class="line">        this.key = key;</div><div class="line">        this.value = value;</div><div class="line">        this.next = next;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public final K getKey()        &#123; return key; &#125;</div><div class="line">    public final V getValue()      &#123; return value; &#125;</div><div class="line">    public final String toString() &#123; return key + &quot;=&quot; + value; &#125;</div><div class="line"></div><div class="line">    public final int hashCode() &#123;</div><div class="line">        return Objects.hashCode(key) ^ Objects.hashCode(value);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public final V setValue(V newValue) &#123;</div><div class="line">        V oldValue = value;</div><div class="line">        value = newValue;</div><div class="line">        return oldValue;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public final boolean equals(Object o) &#123;</div><div class="line">        if (o == this)</div><div class="line">            return true;</div><div class="line">        if (o instanceof Map.Entry) &#123;</div><div class="line">            Map.Entry&lt;?,?&gt; e = (Map.Entry&lt;?,?&gt;)o;</div><div class="line">            if (Objects.equals(key, e.getKey()) &amp;&amp;</div><div class="line">                Objects.equals(value, e.getValue()))</div><div class="line">                return true;</div><div class="line">        &#125;</div><div class="line">        return false;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2017/03/07/hashmap/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hash</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/07/hashmap/">展开全文 >></a>
         </p>
       
 
@@ -1059,6 +1057,18 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">小章鱼</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">paln</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
@@ -1075,15 +1085,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">小章鱼</a>
+                <a href="javascript:void(0)" class="js-tag color4">bug</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">paln</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1096,18 +1102,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据挖掘， 算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">bug</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1135,6 +1129,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
@@ -1147,15 +1145,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">reading</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">reading</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">测试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1167,11 +1173,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">测试</a>
+                <a href="javascript:void(0)" class="js-tag color3">事务</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+                <a href="javascript:void(0)" class="js-tag color2">PL/SQL</a>
               </li>
              
               <li class="article-tag-list-item">
