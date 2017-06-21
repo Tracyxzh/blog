@@ -151,6 +151,72 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Rfunction" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/21/Rfunction/">R常用函数和数据结构</a>
+    </h1>
+  
+
+        
+        <a href="/2017/06/21/Rfunction/" class="archive-article-date">
+  	<time datetime="2017-06-21T03:14:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>开始了R语言的学习</p>
+<h2 id="基础函数"><a href="#基础函数" class="headerlink" title="基础函数"></a>基础函数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div></pre></td><td class="code"><pre><div class="line"># 首先要学习的函数</div><div class="line">? # 和help函数一样</div><div class="line">str # struture的简写</div><div class="line"></div><div class="line"># 重要的运算符和赋值函数</div><div class="line">%in%, match  # a%in%y 判断a是否为y中的元素</div><div class="line">=, &lt;-, &lt;&lt;- # x=c(1,2,3) x&lt;&lt;-x*2 结果 x=c(2,4,6)更新x的值</div><div class="line">$, [, [[, head, tail, subset # head(1:50, 10) [1]1  2  3  4  5  6  7  8  9 10 tail(1:50, 10)  [1] 41 42 43 44 45 46 47 48 49 50</div><div class="line">with</div><div class="line">assign, get</div><div class="line"></div><div class="line"># 比较</div><div class="line">all.equal, identical</div><div class="line">!=, ==, &gt;, &gt;=, &lt;, &lt;=</div><div class="line">is.na, complete.cases</div><div class="line">is.finite</div><div class="line"></div><div class="line"># 基础数学</div><div class="line">*, +, -, /, ^, %%, %/% # %% 取余 # %/% 取整</div><div class="line">abs, sign # sign 指示函数</div><div class="line">acos, asin, atan, atan2</div><div class="line">sin, cos, tan</div><div class="line">ceiling, floor, round, trunc, signif # trunc 去除小数  signif(data, n) data 精确的位数为n，包括整数</div><div class="line">exp, log, log10, log2, sqrt</div><div class="line">max, min, prod, sum # prod 连乘</div><div class="line">cummax, cummin, cumprod, cumsum, diff # cu开头的函数计算累计值 # diff计算间隔</div><div class="line">pmax, pmin  # pmax(x,y,z) 返回x,y,z各列的最大值</div><div class="line">range # 取出最大最小值</div><div class="line">mean, median, cor, sd, var # cor 相关系数  sd 均方差Standard Deviation var 方差</div><div class="line">rle # Run Length Encoding 连续变量统计</div><div class="line"></div><div class="line"># 处理函数的函数</div><div class="line">function</div><div class="line">missing</div><div class="line">on.exit</div><div class="line">return, invisible</div><div class="line"></div><div class="line"># 逻辑与集合</div><div class="line">&amp;, |, !, xor</div><div class="line">all, any</div><div class="line">intersect, union, setdiff, setequal</div><div class="line">which</div><div class="line"></div><div class="line"># 向量与矩阵</div><div class="line">c, matrix</div><div class="line"># 强制转换规则字符型(character)&gt;数值型(numeric)逻辑型(logical)</div><div class="line">length, dim, ncol, nrow</div><div class="line">cbind, rbind</div><div class="line">names, colnames, rownames</div><div class="line">t</div><div class="line">diag</div><div class="line">sweep</div><div class="line">as.matrix, data.matrix</div><div class="line"></div><div class="line"># 构建向量</div><div class="line">c</div><div class="line">rep, rep_len</div><div class="line">seq, seq_len, seq_along</div><div class="line">rev</div><div class="line">sample</div><div class="line">choose, factorial, combn</div><div class="line">(is/as).(character/numeric/logical/...)</div><div class="line"></div><div class="line"># 列表和数据框</div><div class="line">list, unlist</div><div class="line">data.frame, as.data.frame</div><div class="line">split</div><div class="line">expand.grid</div><div class="line"></div><div class="line"># 控制流</div><div class="line">if, &amp;&amp;, || (short circuiting)</div><div class="line">for, while</div><div class="line">next, break</div><div class="line">switch</div><div class="line">ifelse</div><div class="line"></div><div class="line"># apply函数和相似函数</div><div class="line">lapply, sapply, vapply</div><div class="line">apply</div><div class="line">tapply</div><div class="line">replicte</div></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2017/06/21/Rfunction/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">R</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/21/Rfunction/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-mathinelearning" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -869,91 +935,9 @@
 
 
   
-    <article id="post-javacopy" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/11/javacopy/">java四大引用：强、软、弱、虚</a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/11/javacopy/" class="archive-article-date">
-  	<time datetime="2017-03-11T12:48:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>紧张刺激的前言又来了，为什么会写这篇文档呢。因为我前两天阿里面试的时候问我了解引用吗，然后我说知道一点啊，回答的时候深拷贝和浅拷贝。但是呢具体的内层原理不知道，所以回答的时候呢就有点虚啊，为了以后理直气壮的回答面试问题，所以准备好好把这个问题弄清楚，问题总是会有的，慢慢解决就好了。</p>
-<h2 id="软件包-java-lang-ref"><a href="#软件包-java-lang-ref" class="headerlink" title="软件包 java.lang.ref"></a>软件包 java.lang.ref</h2><p>提供了引用对象类，支持在某种程度上与垃圾回收器之间的交互。程序可以使用一个引用对象来维持对另外某一对象的引用，所采用的方式是使后者仍然可以被回收器回收。程序还可以安排在回收器确定某一给定对象的可到达性已经更改之后的某个时间得到通知。我们都知道 JVM 中对象是被分配在堆（heap）上的，当程序行动中不再有引用指向这个对象时，这个对象就可以被垃圾回收器所回收。包结构如下图：<br><img src="/2017/03/11/javacopy/ref.png" alt="ref包内类图"></p>
-<h2 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h2><p>引用类型（reference type）指向一个对象，不是原始值，指向对象的变量是引用变量。在java里面除去基本数据类型的其它类型都是引用数据类型，自己定义的class类都是引用类型。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">引用对象的抽象基类。此类定义了常用于所有引用对象的操作。因为引用对象是通过与垃圾回收器的密切合作来实现的，所以不能直接为此类创建子类。</div><div class="line">public abstract class Reference&lt;T&gt; &#123;</div><div class="line">    private T referent;         /* Treated specially by GC */</div><div class="line">    ...</div><div class="line">    public T get() &#123;</div><div class="line">        return this.referent;</div><div class="line">    &#125;</div><div class="line">    public void clear() &#123;</div><div class="line">        this.referent = null;</div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line">    Reference(T referent) &#123;</div><div class="line">        this(referent, null);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    Reference(T referent, ReferenceQueue&lt;? super T&gt; queue) &#123;</div><div class="line">        this.referent = referent;</div><div class="line">        this.queue = (queue == null) ? ReferenceQueue.NULL : queue;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="StrongReference-强引用"><a href="#StrongReference-强引用" class="headerlink" title="StrongReference 强引用"></a>StrongReference 强引用</h2><ul>
-<li>强引用可以直接访问目标对象。</li>
-<li>强引用所指向的对象在任何时候都不会被系统回收。</li>
-<li>强引用可能导致内存泄漏(out of memory)。<br>实际上，FinalReference 代表的正是 Java 中的强引用，如这样的代码 :<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Bean bean = new Bean();</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>在虚拟机的实现过程中，实际采用了 FinalReference 类对其进行引用。而 Finalizer，除了作为一个实现类外，更是在虚拟机中实现一个 FinalizerThread，以使虚拟机能够在所有的强引用被解除后实现内存清理。<br>整个FinalReference类的定义如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">class FinalReference&lt;T&gt; extends Reference&lt;T&gt; &#123;</div><div class="line"></div><div class="line">    public FinalReference(T referent, ReferenceQueue&lt;? super T&gt; q) &#123;</div><div class="line">        super(referent, q);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">final class Finalizer extends FinalReference&lt;Object&gt; &#123; </div><div class="line">	...</div><div class="line">	private void runFinalizer(JavaLangAccess jla) &#123;</div><div class="line">        synchronized (this) &#123;</div><div class="line">            if (hasBeenFinalized()) return;</div><div class="line">            remove();</div><div class="line">        &#125;</div><div class="line">        try &#123;</div><div class="line">            Object finalizee = this.get();</div><div class="line">            if (finalizee != null &amp;&amp; !(finalizee instanceof java.lang.Enum)) &#123;</div><div class="line">                jla.invokeFinalize(finalizee);</div><div class="line"></div><div class="line">                /* Clear stack slot containing this variable, to decrease</div><div class="line">                   the chances of false retention with a conservative GC */</div><div class="line">                finalizee = null;</div><div class="line">            &#125;</div><div class="line">        &#125; catch (Throwable x) &#123; &#125;</div><div class="line">        super.clear();</div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-        
-          <a class="article-more-a" href="/2017/03/11/javacopy/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小章鱼</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">引用</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/11/javacopy/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -1066,6 +1050,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">R</a>
               </li>
              
               <li class="article-tag-list-item">
