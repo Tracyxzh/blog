@@ -151,6 +151,149 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-RDataVisualization" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/22/RDataVisualization/">R数据可视化-ggplot2</a>
+    </h1>
+  
+
+        
+        <a href="/2017/06/22/RDataVisualization/" class="archive-article-date">
+  	<time datetime="2017-06-22T01:46:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>数据可视化是最直观的展示数据的一种方式</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>install.packages(“tidyverse”)<br>library(tidyverse)</p>
+<h2 id="绘图函数"><a href="#绘图函数" class="headerlink" title="绘图函数"></a>绘图函数</h2><p>ggplot(data = <DATA>) +<br>  <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))</MAPPINGS></GEOM_FUNCTION></DATA></p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">ggplot(data = mpg) + </div><div class="line">  geom_point(mapping = aes(x = displ, y = hwy, size = class))</div><div class="line">说明:</div><div class="line">mpg是这个包中自带的一份数据，这个数据是美国环境保护局对于38种车型的统计数据</div><div class="line"></div><div class="line"></div><div class="line">mpg</div><div class="line">#&gt; # A tibble: 234 × 11</div><div class="line">#&gt;   manufacturer model displ  year   cyl      trans   drv   cty   hwy    fl</div><div class="line">#&gt;          &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt;      &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;</div><div class="line">#&gt; 1         audi    a4   1.8  1999     4   auto(l5)     f    18    29     p</div><div class="line">#&gt; 2         audi    a4   1.8  1999     4 manual(m5)     f    21    29     p</div><div class="line">#&gt; 3         audi    a4   2.0  2008     4 manual(m6)     f    20    31     p</div><div class="line">#&gt; 4         audi    a4   2.0  2008     4   auto(av)     f    21    30     p</div><div class="line">#&gt; 5         audi    a4   2.8  1999     6   auto(l5)     f    16    26     p</div><div class="line">#&gt; 6         audi    a4   2.8  1999     6 manual(m5)     f    18    26     p</div><div class="line">#&gt; # ... with 228 more rows, and 1 more variables: class &lt;chr&gt;</div><div class="line"></div><div class="line">aes(x = displ, y = hwy)：</div><div class="line">这里是绘制displ和hwy关系的二维图像</div><div class="line">size = class:</div><div class="line">对于图像中的点根据class分类使用不同的大小，这里还可以使用color，shape，alpha，这几个单词的字面意思，大家可以动手实现一下</div></pre></td></tr></table></figure>
+<h2 id="切分图像"><a href="#切分图像" class="headerlink" title="切分图像"></a>切分图像</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ggplot(data = mpg) + </div><div class="line">  geom_point(mapping = aes(x = displ, y = hwy)) + </div><div class="line">  facet_wrap(~ class)</div><div class="line">facet_wrap 第一个参数是切分依据的字段，该字段需要是离散的</div></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2017/06/22/RDataVisualization/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">R</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">数据可视化</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/22/RDataVisualization/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-rpackge" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/21/rpackge/">R函数包-dplyr</a>
+    </h1>
+  
+
+        
+        <a href="/2017/06/21/rpackge/" class="archive-article-date">
+  	<time datetime="2017-06-21T15:12:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>项目中用到了几个R语言的包，顺道仔细学习下</p>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>name    Description<br>select()    选择列 # select(data, [-,start_with(), ends_with(),contains(),matches(),one_of()]olumn name, …)<br>filter()    行过滤 # filter(data, column name[&gt;, &lt;, &gt;=, &lt;=, !=, %in%] condition)<br>arrange()    整理行 # arrange(order, sleep_total) 排序<br>mutate()    新建列 # mutate(rem_proportion = sleep_rem / sleep_total)<br>summarise()    统计  # summarise(avg_sleep = mean(sleep_total))<br>group_by()    分组 # group_by(order)</p>
+<h2 id="管道函数-gt"><a href="#管道函数-gt" class="headerlink" title="管道函数 %&gt;%"></a>管道函数 %&gt;%</h2><p>功能类似于Linux的管道|一样</p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="http://genomicsclass.github.io/book/pages/dplyr_tutorial.html" target="_blank" rel="external">plyr_tutorial</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">R</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">dplyr</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/21/rpackge/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-Rfunction" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -788,153 +931,6 @@
 
 
   
-    <article id="post-uml" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/06/uml/">给自己看的UML</a>
-    </h1>
-  
-
-        
-        <a href="/2017/04/06/uml/" class="archive-article-date">
-  	<time datetime="2017-04-06T13:25:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>发现自己的心最近有点浮躁了，每次都是有那么一段时间很堕落。不将这个了，今天要讲的是关于设计模式的基础UML，你们可以去知乎上搜一搜，对于UML褒贬不一。我个人感觉还是有用的，如果图能够说明很多语言无法简单描述的问题，那么是不是减少了很多不必要的沟通误会呢。而且理解UML对于自己动手理清思路也很有帮助。</p>
-<h2 id="UML定义"><a href="#UML定义" class="headerlink" title="UML定义"></a>UML定义</h2><p>统一建模语言（英语：Unified Modeling Language，缩写 UML）是非专利的第三代建模和规约语言。UML是一种开放的方法，用于说明、可视化、构建和编写一个正在开发的、面向对象的、软件密集系统的制品的开放方法。UML展现了一系列最佳工程实践，这些最佳实践在对大规模，复杂系统进行建模方面，特别是在软件架构层次已经被验证有效。</p>
-<h2 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h2><p><img src="/2017/04/06/uml/class.png" alt="类图"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">1.类图前的+ - # 表示访问权限</div><div class="line">+ 表示public</div><div class="line"># 表示protect</div><div class="line">- 表示private</div><div class="line">2.类图有3层</div><div class="line">第一层是类名</div><div class="line">第二层是成员</div><div class="line">第三层是方法</div></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2017/04/06/uml/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">uml</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/06/uml/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-exception" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/22/exception/">java 异常</a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/22/exception/" class="archive-article-date">
-  	<time datetime="2017-03-22T08:06:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>印象中对于，异常的了解就只是try，catch，然后用的比较多的几乎是Exception。以前学习的时候想的就是只要能用会用就好了，没怎么关注过异常，还以为Exception是所有异常的基类。昨天做了大众点评的实习笔试，发现自己理心仪的大众点评还是有一些差距的，笔试中关于异常的题目，自己都不是很了解。所以，今天就来探讨下java的异常和错误。</p>
-<h2 id="Throwable类"><a href="#Throwable类" class="headerlink" title="Throwable类"></a>Throwable类</h2><p>Throwable类是java语言中所有错误和异常的基类，用来描述违例抛出的东西。Throwable有两种常规规范，Error和Exception。</p>
-<h2 id="Exception和Error"><a href="#Exception和Error" class="headerlink" title="Exception和Error"></a>Exception和Error</h2><p>Error 代表编译期和系统错误，我们一般不必特意捕获它们（除在特殊情况以外）。Exception 是可以从任何标准 Java库的类方法中“掷”出的基本类型。此外，它们亦可从我们自己的方法以及运行期偶发事件中“掷”出。在Java中我们可以这样区分，异常(Exception)是一种非程序原因的操作失败(Failure)，而错误(Error)则意味着程序有缺陷(Bug)。</p>
-        
-          <a class="article-more-a" href="/2017/03/22/exception/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Exception</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/22/exception/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1041,6 +1037,14 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">R</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">数据可视化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">小章鱼</a>
               </li>
              
@@ -1050,10 +1054,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">R</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1141,6 +1141,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">dplyr</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -1161,15 +1165,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">事务处理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">事务</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">PL/SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事务处理</a>
               </li>
              
               <li class="article-tag-list-item">

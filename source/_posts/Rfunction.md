@@ -102,7 +102,7 @@ library(lubridate)
 
 # 字符处理
 grep, agrep
-gsub
+gsub # 字符替换 gsub(pattern, replacement, x)
 strsplit
 chartr
 nchar
@@ -129,7 +129,7 @@ library(abind)
 ### 统计函数
 ```
 # 排序和制表
-duplicated, unique
+duplicated, unique  # unique 找出不同的元素
 merge
 order, rank, quantile
 sort
