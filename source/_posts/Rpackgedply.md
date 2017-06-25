@@ -1,5 +1,5 @@
 ---
-title: R函数包-dplyr
+title: R工具包-dplyr
 date: 2017-06-21 23:12:32
 tags: [R, dplyr]
 ---
