@@ -12,6 +12,7 @@ R语言用到了对于时间的处理
 install.packages("lubridate")
 library("lubridate")
 ```
+<!--more-->
 
 ## API
 ymd(), ymd_hms, dmy(), dmy_hms, mdy()

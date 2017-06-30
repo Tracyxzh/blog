@@ -1,5 +1,5 @@
 ---
-title: Rpackgepryr
+title: R工具包-pryr
 date: 2017-06-23 09:52:49
 tags: [R, pryr]
 ---

@@ -57,7 +57,7 @@ which # 用法which(test)。返回test为真值的位置
 c, matrix
 # 强制转换规则字符型(character)>数值型(numeric)逻辑型(logical)
 length, dim, ncol, nrow
-cbind, rbind
+cbind, rbind # rbind(x,y) # 按行合并指定数据
 names, colnames, rownames # names 定义或返回向量c的元素名字
 t # 求转置
 diag
@@ -74,9 +74,9 @@ choose, factorial, combn
 (is/as).(character/numeric/logical/...)
 
 # 列表和数据框
-list, unlist
+list, unlist  # unlist 将列表转换为向量 unlist(x,recursive=FALSE,use.names=TRUE)
 data.frame, as.data.frame
-split
+split # 根据给定条件拆分数据 split(x,f) x:要拆分的向量或数据框 f:保存拆分基准的因子
 expand.grid
 
 # 控制流
@@ -87,8 +87,8 @@ switch
 ifelse # ifelse(test, yes, no) test为真，输出yes值，否则输出no值。
 
 # apply函数和相似函数
-lapply, sapply, vapply
-apply
+lapply, sapply, vapply 
+apply # 向数据或矩阵应用指定函数，然后奖结果值以向量、数组或列表的方式返回
 tapply
 replicate # replicate(n, f) # 对于函数f运行n次
 ```

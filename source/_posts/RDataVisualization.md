@@ -5,7 +5,44 @@ tags: [R, 数据可视化]
 ---
 
 ## 前言
-数据可视化是最直观的展示数据的一种方式
+数据可视化是最直观的展示数据的一种方式。R语言提供了多种绘图系统，借助它们可以轻松绘制散点图(scatter plot)、折线图(graph of broken line)、条形图(bar graph)、箱线图(box plot)等。R的绘图功能主要由graphics、lattice、ggplot这3个包提供
+
+## plot
+```
+plot(
+	x,     # x
+	y,     # y
+	xlab,  # 横坐标name
+	ylab,  # 纵坐标name
+	main,  # 图name
+	pch,   # 点类型
+	cex,   # 点大小
+	col,   # 点颜色
+	xlim,  # x范围
+	ylim,  # y范围
+	type   # 图像类型，p点，l线，b点线
+)
+```
+
+## par
+```
+使用plot绘图，每次都会新建一个窗口，可以使用par
+par(
+	... # 采用tag = value 方式设置参数
+)
+```
+
+## jitter
+```
+jitter(
+	x,              # 数据
+	factor = 1,     # 设置噪声水平
+	amount = null
+)
+```
+
+points、lines、abline在plot的图纸上添加点和线、直线
+
 
 ## 安装
 install.packages("tidyverse")

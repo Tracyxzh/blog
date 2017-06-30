@@ -17,6 +17,8 @@ mutate()	新建列 # mutate(rem_proportion = sleep_rem / sleep_total)
 summarise()	统计  # summarise(avg_sleep = mean(sleep_total))
 group_by()	分组 # group_by(order)
 
+<!--more-->
+
 ## 管道函数 %>%
 功能类似于Linux的管道|一样
 

@@ -51,7 +51,7 @@
 		  <h1 class="header-author"><a href="/">Tracyxzh</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">i do</p>
+		<p class="header-subtitle">简单的练习如果持之以恒，就会获得某种神奇的力量</p>
 		
 
 		<nav class="header-menu">
@@ -106,7 +106,7 @@
 			  <h1 class="header-author js-header-author">Tracyxzh</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>i do<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>简单的练习如果持之以恒，就会获得某种神奇的力量<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -151,6 +151,217 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-logicalRegression" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/28/logicalRegression/">逻辑回归</a>
+    </h1>
+  
+
+        
+        <a href="/2017/06/28/logicalRegression/" class="archive-article-date">
+  	<time datetime="2017-06-28T02:07:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在做一个早期预警的模型，这个模型用到了逻辑回归，这里记录下自己学习逻辑回归的笔记。</p>
+<h2 id="sigmod函数推导"><a href="#sigmod函数推导" class="headerlink" title="sigmod函数推导"></a>sigmod函数推导</h2><p>逻辑回归用到sigmod函数作为概率模型，相信很多人在一开始看机器学习相关书籍的时候就看到了，但是为什么可以用sigmod函数作为概率模型还有很多疑惑。这里首先讲解下为什么可以用sigmod函数作为概率模型。其实机器学习的核心也就是要找到一个概率模型和找到损失函数，然后使得损失函数最小不断地改进系数。下图是sigmod的推导，手写字有点难看😂<br><img src="/2017/06/28/logicalRegression/sigmod.jpeg" alt="sigmod推导"></p>
+        
+          <a class="article-more-a" href="/2017/06/28/logicalRegression/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">logical</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/28/logicalRegression/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-RpackgeRmysql" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/26/RpackgeRmysql/">R工具包-RMySQL和数据处理和加工相关包</a>
+    </h1>
+  
+
+        
+        <a href="/2017/06/26/RpackgeRmysql/" class="archive-article-date">
+  	<time datetime="2017-06-26T03:12:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>R要处理的数据保存在数据库中，应考虑R与MySQL之间的数据输入和输出问题，RMySQL包正是为了解决这些问题而推出的。</p>
+<h2 id="RMySQL"><a href="#RMySQL" class="headerlink" title="RMySQL"></a>RMySQL</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">install.packages(&quot;RMySQL&quot;)</div><div class="line">library(RMySQL)</div></pre></td></tr></table></figure>
+<h3 id="MySQL函数"><a href="#MySQL函数" class="headerlink" title="MySQL函数"></a>MySQL函数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">RMySQL::dbConnect : 连接数据库</div><div class="line">RMySQL::dbConnect(</div><div class="line">	drv,</div><div class="line">	user,</div><div class="line">	password,</div><div class="line">	dbname,</div><div class="line">	host</div><div class="line">)</div><div class="line">返回连接对象</div></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2017/06/26/RpackgeRmysql/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">R</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/26/RpackgeRmysql/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Rdata" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/25/Rdata/">R数据操作</a>
+    </h1>
+  
+
+        
+        <a href="/2017/06/25/Rdata/" class="archive-article-date">
+  	<time datetime="2017-06-25T13:54:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>R主要是基于向量处理数据，与使用for循环逐个处理单个数据的方式相比，基于向量的处理速度更快。</p>
+<h2 id="R中常用数据集"><a href="#R中常用数据集" class="headerlink" title="R中常用数据集"></a>R中常用数据集</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">数据集           |   含义</div><div class="line">AirPassenger    |    Box &amp; Jenkins航空公司1949～1960年每月国际航线乘客数 </div><div class="line">airquality      |    纽约市1973年5月～9月每日空气质量</div><div class="line">cars            |    20世纪20年代汽车速度对刹车距离的影响</div><div class="line">mtcars          |    1974年美国Motor Trend杂志上刊登的的32辆车的11个指标数据</div><div class="line">Titanic         |    “泰坦尼克”号生还者信息，包含舱室（一等舱、二等舱、三等舱）、性别、年龄、是否生还</div><div class="line">InsectSprays    |    使用6中杀虫剂后各自的害虫存活率</div><div class="line">Orange          |    橙数的种类、树龄、树围</div><div class="line">swiss           |    1888年前后，瑞士联邦47个法语州的生育率鱼社会经济指标</div></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2017/06/25/Rdata/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">R</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据操作</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/25/Rdata/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-Rpackgepryr" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -158,7 +369,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/23/Rpackgepryr/">Rpackgepryr</a>
+      <a class="article-title" href="/2017/06/23/Rpackgepryr/">R工具包-pryr</a>
     </h1>
   
 
@@ -273,11 +484,9 @@
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>R语言用到了对于时间的处理</p>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">install.packages(&quot;lubridate&quot;)</div><div class="line">library(&quot;lubridate&quot;)</div></pre></td></tr></table></figure>
-<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><p>ymd(), ymd_hms, dmy(), dmy_hms, mdy()<br>这一类是用来简化string转date，<br>这里再简单介绍下as_date，y代表2为年(16)，Y代表4位年(16)，m代表月份(12)，d表示日期(3)，b表示月份英文简写，B表示月份英文全称</p>
-<p>year(), month(), mday(), hour(), minute() and second()<br>通过以上api获取日期的年月日时分秒</p>
-<p>with_tz(), force_tz()<br>显示和改变时区</p>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://github.com/tidyverse/lubridate" target="_blank" rel="external">lubridate</a><br><a href="https://www.stat.berkeley.edu/~s133/dates.html" target="_blank" rel="external">Dates and Times in R</a></p>
-
+        
+          <a class="article-more-a" href="/2017/06/22/Rpackgelubridate/#more">more >></a>
+        
       
 
       
@@ -343,7 +552,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>数据可视化是最直观的展示数据的一种方式</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>数据可视化是最直观的展示数据的一种方式。R语言提供了多种绘图系统，借助它们可以轻松绘制散点图(scatter plot)、折线图(graph of broken line)、条形图(bar graph)、箱线图(box plot)等。R的绘图功能主要由graphics、lattice、ggplot这3个包提供</p>
+<h2 id="plot"><a href="#plot" class="headerlink" title="plot"></a>plot</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">plot(</div><div class="line">	x,     # x</div><div class="line">	y,     # y</div><div class="line">	xlab,  # 横坐标name</div><div class="line">	ylab,  # 纵坐标name</div><div class="line">	main,  # 图name</div><div class="line">	pch,   # 点类型</div><div class="line">	cex,   # 点大小</div><div class="line">	col,   # 点颜色</div><div class="line">	xlim,  # x范围</div><div class="line">	ylim,  # y范围</div><div class="line">	type   # 图像类型，p点，l线，b点线</div><div class="line">)</div></pre></td></tr></table></figure>
+<h2 id="par"><a href="#par" class="headerlink" title="par"></a>par</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">使用plot绘图，每次都会新建一个窗口，可以使用par</div><div class="line">par(</div><div class="line">	... # 采用tag = value 方式设置参数</div><div class="line">)</div></pre></td></tr></table></figure>
+<h2 id="jitter"><a href="#jitter" class="headerlink" title="jitter"></a>jitter</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">jitter(</div><div class="line">	x,              # 数据</div><div class="line">	factor = 1,     # 设置噪声水平</div><div class="line">	amount = null</div><div class="line">)</div></pre></td></tr></table></figure>
+<p>points、lines、abline在plot的图纸上添加点和线、直线</p>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>install.packages(“tidyverse”)<br>library(tidyverse)</p>
 <h2 id="绘图函数"><a href="#绘图函数" class="headerlink" title="绘图函数"></a>绘图函数</h2><p>ggplot(data = <DATA>) +<br>  <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))</MAPPINGS></GEOM_FUNCTION></DATA></p>
 <h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">ggplot(data = mpg) + </div><div class="line">  geom_point(mapping = aes(x = displ, y = hwy, size = class))</div><div class="line">说明:</div><div class="line">mpg是这个包中自带的一份数据，这个数据是美国环境保护局对于38种车型的统计数据</div><div class="line"></div><div class="line"></div><div class="line">mpg</div><div class="line">#&gt; # A tibble: 234 × 11</div><div class="line">#&gt;   manufacturer model displ  year   cyl      trans   drv   cty   hwy    fl</div><div class="line">#&gt;          &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt;      &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;</div><div class="line">#&gt; 1         audi    a4   1.8  1999     4   auto(l5)     f    18    29     p</div><div class="line">#&gt; 2         audi    a4   1.8  1999     4 manual(m5)     f    21    29     p</div><div class="line">#&gt; 3         audi    a4   2.0  2008     4 manual(m6)     f    20    31     p</div><div class="line">#&gt; 4         audi    a4   2.0  2008     4   auto(av)     f    21    30     p</div><div class="line">#&gt; 5         audi    a4   2.8  1999     6   auto(l5)     f    16    26     p</div><div class="line">#&gt; 6         audi    a4   2.8  1999     6 manual(m5)     f    18    26     p</div><div class="line">#&gt; # ... with 228 more rows, and 1 more variables: class &lt;chr&gt;</div><div class="line"></div><div class="line">aes(x = displ, y = hwy)：</div><div class="line">这里是绘制displ和hwy关系的二维图像</div><div class="line">size = class:</div><div class="line">对于图像中的点根据class分类使用不同的大小，这里还可以使用color，shape，alpha，这几个单词的字面意思，大家可以动手实现一下</div></pre></td></tr></table></figure>
@@ -418,9 +631,9 @@
       
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>项目中用到了几个R语言的包，顺道仔细学习下</p>
 <h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>name    Description<br>select()    选择列 # select(data, [-,start_with(), ends_with(),contains(),matches(),one_of()]olumn name, …)<br>filter()    行过滤 # filter(data, column name[&gt;, &lt;, &gt;=, &lt;=, !=, %in%] condition)<br>arrange()    整理行 # arrange(order, sleep_total) 排序<br>mutate()    新建列 # mutate(rem_proportion = sleep_rem / sleep_total)<br>summarise()    统计  # summarise(avg_sleep = mean(sleep_total))<br>group_by()    分组 # group_by(order)</p>
-<h2 id="管道函数-gt"><a href="#管道函数-gt" class="headerlink" title="管道函数 %&gt;%"></a>管道函数 %&gt;%</h2><p>功能类似于Linux的管道|一样</p>
-<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="http://genomicsclass.github.io/book/pages/dplyr_tutorial.html" target="_blank" rel="external">plyr_tutorial</a></p>
-
+        
+          <a class="article-more-a" href="/2017/06/21/Rpackgedply/#more">more >></a>
+        
       
 
       
@@ -487,7 +700,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>开始了R语言的学习</p>
-<h2 id="基础函数"><a href="#基础函数" class="headerlink" title="基础函数"></a>基础函数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div></pre></td><td class="code"><pre><div class="line"># 首先要学习的函数</div><div class="line">? # 和help函数一样</div><div class="line">str # struture的简写</div><div class="line"></div><div class="line"># 重要的运算符和赋值函数</div><div class="line">%in%, match  # a%in%y 判断a是否为y中的元素</div><div class="line">=, &lt;-, &lt;&lt;- # x=c(1,2,3) x&lt;&lt;-x*2 结果 x=c(2,4,6)更新x的值</div><div class="line">$, [, [[, head, tail, subset # head(1:50, 10) [1]1  2  3  4  5  6  7  8  9 10 tail(1:50, 10)  [1] 41 42 43 44 45 46 47 48 49 50</div><div class="line">with</div><div class="line">assign, get</div><div class="line"></div><div class="line"># 比较</div><div class="line">all.equal, identical</div><div class="line">!=, ==, &gt;, &gt;=, &lt;, &lt;=</div><div class="line">is.na, complete.cases</div><div class="line">is.finite</div><div class="line"></div><div class="line"># 基础数学</div><div class="line">*, +, -, /, ^, %%, %/% # %% 取余 # %/% 取整</div><div class="line">abs, sign # sign 指示函数</div><div class="line">acos, asin, atan, atan2</div><div class="line">sin, cos, tan</div><div class="line">ceiling, floor, round, trunc, signif # trunc 去除小数  signif(data, n) data 精确的位数为n，包括整数</div><div class="line">exp, log, log10, log2, sqrt</div><div class="line">max, min, prod, sum # prod 连乘</div><div class="line">cummax, cummin, cumprod, cumsum, diff # cu开头的函数计算累计值 # diff计算间隔</div><div class="line">pmax, pmin  # pmax(x,y,z) 返回x,y,z各列的最大值</div><div class="line">range # 取出最大最小值</div><div class="line">mean, median, cor, sd, var # cor 相关系数  sd 均方差Standard Deviation var 方差</div><div class="line">rle # Run Length Encoding 连续变量统计</div><div class="line"></div><div class="line"># 处理函数的函数</div><div class="line">function</div><div class="line">missing</div><div class="line">on.exit</div><div class="line">return, invisible</div><div class="line"></div><div class="line"># 逻辑与集合</div><div class="line">&amp;, |, !, xor</div><div class="line">all, any</div><div class="line">intersect, union, setdiff, setequal</div><div class="line">which # 用法which(test)。返回test为真值的位置</div><div class="line"></div><div class="line"># 向量与矩阵</div><div class="line">c, matrix</div><div class="line"># 强制转换规则字符型(character)&gt;数值型(numeric)逻辑型(logical)</div><div class="line">length, dim, ncol, nrow</div><div class="line">cbind, rbind</div><div class="line">names, colnames, rownames</div><div class="line">t</div><div class="line">diag</div><div class="line">sweep</div><div class="line">as.matrix, data.matrix</div><div class="line"></div><div class="line"># 构建向量</div><div class="line">c</div><div class="line">rep, rep_len</div><div class="line">seq, seq_len, seq_along</div><div class="line">rev</div><div class="line">sample</div><div class="line">choose, factorial, combn</div><div class="line">(is/as).(character/numeric/logical/...)</div><div class="line"></div><div class="line"># 列表和数据框</div><div class="line">list, unlist</div><div class="line">data.frame, as.data.frame</div><div class="line">split</div><div class="line">expand.grid</div><div class="line"></div><div class="line"># 控制流</div><div class="line">if, &amp;&amp;, || (short circuiting)</div><div class="line">for, while</div><div class="line">next, break</div><div class="line">switch</div><div class="line">ifelse # ifelse(test, yes, no) test为真，输出yes值，否则输出no值。</div><div class="line"></div><div class="line"># apply函数和相似函数</div><div class="line">lapply, sapply, vapply</div><div class="line">apply</div><div class="line">tapply</div><div class="line">replicate # replicate(n, f) # 对于函数f运行n次</div></pre></td></tr></table></figure>
+<h2 id="基础函数"><a href="#基础函数" class="headerlink" title="基础函数"></a>基础函数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div></pre></td><td class="code"><pre><div class="line"># 首先要学习的函数</div><div class="line">? # 和help函数一样</div><div class="line">str # struture的简写</div><div class="line"></div><div class="line"># 重要的运算符和赋值函数</div><div class="line">%in%, match  # a%in%y 判断a是否为y中的元素</div><div class="line">=, &lt;-, &lt;&lt;- # x=c(1,2,3) x&lt;&lt;-x*2 结果 x=c(2,4,6)更新x的值</div><div class="line">$, [, [[, head, tail, subset # head(1:50, 10) [1]1  2  3  4  5  6  7  8  9 10 tail(1:50, 10)  [1] 41 42 43 44 45 46 47 48 49 50</div><div class="line">with</div><div class="line">assign, get</div><div class="line"></div><div class="line"># 比较</div><div class="line">all.equal, identical # identical(a,b) 判断对象是否相同 </div><div class="line">!=, ==, &gt;, &gt;=, &lt;, &lt;=</div><div class="line">is.na, complete.cases</div><div class="line">is.finite</div><div class="line"></div><div class="line"># 基础数学</div><div class="line">*, +, -, /, ^, %%, %/% # %% 取余 # %/% 取整</div><div class="line">abs, sign # sign 指示函数</div><div class="line">acos, asin, atan, atan2</div><div class="line">sin, cos, tan</div><div class="line">ceiling, floor, round, trunc, signif # trunc 去除小数  signif(data, n) data 精确的位数为n，包括整数</div><div class="line">exp, log, log10, log2, sqrt</div><div class="line">max, min, prod, sum # prod 连乘</div><div class="line">cummax, cummin, cumprod, cumsum, diff # cu开头的函数计算累计值 # diff计算间隔</div><div class="line">pmax, pmin  # pmax(x,y,z) 返回x,y,z各列的最大值</div><div class="line">range # 取出最大最小值</div><div class="line">mean, median, cor, sd, var # cor 相关系数  sd 均方差Standard Deviation var 方差</div><div class="line">rle # Run Length Encoding 连续变量统计</div><div class="line"></div><div class="line"># 处理函数的函数</div><div class="line">function</div><div class="line">missing</div><div class="line">on.exit</div><div class="line">return, invisible</div><div class="line"></div><div class="line"># 逻辑与集合</div><div class="line">&amp;, |, !, xor  # &amp;, | 用于对保存逻辑值的向量进行运算运算，并按元素逐个进行</div><div class="line">&amp;&amp;, || # &amp;&amp;, ||  &amp;&amp;并不用于在向量的元素之间的运算，它用于运算两个逻辑值</div><div class="line">all, any</div><div class="line">intersect, union, setdiff, setequal # union 求合集 intersect 求交集 setdiff 求差集 setequal 判断x和y是否相同</div><div class="line">which # 用法which(test)。返回test为真值的位置 </div><div class="line"></div><div class="line"># 向量与矩阵</div><div class="line">c, matrix</div><div class="line"># 强制转换规则字符型(character)&gt;数值型(numeric)逻辑型(logical)</div><div class="line">length, dim, ncol, nrow</div><div class="line">cbind, rbind # rbind(x,y) # 按行合并指定数据</div><div class="line">names, colnames, rownames # names 定义或返回向量c的元素名字</div><div class="line">t # 求转置</div><div class="line">diag</div><div class="line">sweep</div><div class="line">as.matrix, data.matrix</div><div class="line"></div><div class="line"># 构建向量</div><div class="line">c</div><div class="line">rep, rep_len # 保存重复向量值的向量 rep(x,times,each) x:保存重复的向量 times:整个向量重复的次数 each:每个元素重复的次数</div><div class="line">seq, seq_len, seq_along # 连续数字组成的向量 seq 创建序列，seq(from, to, by) by是步长默认是1 seq_along(along.with) 根据along.with的长度n创建序列 seq_len(n) 根据n创建长度为n的序列</div><div class="line">rev</div><div class="line">sample</div><div class="line">choose, factorial, combn</div><div class="line">(is/as).(character/numeric/logical/...)</div><div class="line"></div><div class="line"># 列表和数据框</div><div class="line">list, unlist  # unlist 将列表转换为向量 unlist(x,recursive=FALSE,use.names=TRUE)</div><div class="line">data.frame, as.data.frame</div><div class="line">split # 根据给定条件拆分数据 split(x,f) x:要拆分的向量或数据框 f:保存拆分基准的因子</div><div class="line">expand.grid</div><div class="line"></div><div class="line"># 控制流</div><div class="line">if, &amp;&amp;, || (short circuiting)</div><div class="line">for, while</div><div class="line">next, break</div><div class="line">switch</div><div class="line">ifelse # ifelse(test, yes, no) test为真，输出yes值，否则输出no值。</div><div class="line"></div><div class="line"># apply函数和相似函数</div><div class="line">lapply, sapply, vapply </div><div class="line">apply # 向数据或矩阵应用指定函数，然后奖结果值以向量、数组或列表的方式返回</div><div class="line">tapply</div><div class="line">replicate # replicate(n, f) # 对于函数f运行n次</div></pre></td></tr></table></figure>
         
           <a class="article-more-a" href="/2017/06/21/Rfunction/#more">more >></a>
         
@@ -691,251 +904,6 @@
 
 
   
-    <article id="post-collaborativeFiltering" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/06/collaborativeFiltering/">协同过滤</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/06/collaborativeFiltering/" class="archive-article-date">
-  	<time datetime="2017-06-06T13:50:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在实习数据挖掘的工作，但是做的事情就是将oracle的存储过程改成spark sql，这里坦白下我的Scala还在学习的路上。但是我的学习习惯是刨根问底，数据挖掘最终用到的算法才是最终吸引我的。而且最近真的喜欢用网易云听歌，一边听着JBL中放着的歌，一边看着算法，想象自己喝着红酒🍷。所以今天看看推荐算法是如何实现的。</p>
-<h2 id="协同过滤-collaborative-filtering"><a href="#协同过滤-collaborative-filtering" class="headerlink" title="协同过滤 collaborative filtering"></a>协同过滤 collaborative filtering</h2><p>之所以称为“协同”是因为该方法基于其他用户进行推荐。实际上，人们通过协同合作来形成推荐。其工作流程如下：假设要完成的任务是推荐一本书。那么会在网站上搜索与你兴趣类似的其他用户。一旦找到这个用户，就看看这个用户所喜欢的书然后将它们推荐给你。<br>找到相似用户的方法一般是通过距离。<br>距离一般化：明氏距离（Minkowski Distance）<br>$$b(x,y)=(\sum_{k=1}^{n} |x_{k}-y_{k}|)^{r^{1/r}}$$<br>其中：</p>
-<ul>
-<li>r=1时，上述公式计算的就是曼哈顿距离</li>
-<li>r=2时，上述公式计算的就是欧式距离</li>
-<li>r=3时，上述公式计算的是上确界距离</li>
-</ul>
-<p>缺点：r越到，某一维较大差异对最终差值的影响越大。</p>
-<p>曼哈顿距离函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">def manhattan(rating1, rating2):</div><div class="line">    &quot;&quot;&quot;Computes the Manhattan distance. Both rating1 and rating2 are dictionaries</div><div class="line">       of the form &#123;&apos;The Strokes&apos;: 3.0, &apos;Slightly Stoopid&apos;: 2.5&#125;&quot;&quot;&quot;</div><div class="line">    distance = 0</div><div class="line">    commonRatings = False </div><div class="line">    for key in rating1:</div><div class="line">        if key in rating2:</div><div class="line">            distance += abs(rating1[key] - rating2[key])</div><div class="line">            commonRatings = True</div><div class="line">    if commonRatings:</div><div class="line">        return distance</div><div class="line">    else:</div><div class="line">        return -1 #Indicates no ratings in common</div></pre></td></tr></table></figure></p>
-<p>pearson 相关系数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">def pearson(self, rating1, rating2):</div><div class="line">        sum_xy = 0</div><div class="line">        sum_x = 0</div><div class="line">        sum_y = 0</div><div class="line">        sum_x2 = 0</div><div class="line">        sum_y2 = 0</div><div class="line">        n = 0</div><div class="line">        for key in rating1:</div><div class="line">            if key in rating2:</div><div class="line">                n += 1</div><div class="line">                x = rating1[key]</div><div class="line">                y = rating2[key]</div><div class="line">                sum_xy += x * y</div><div class="line">                sum_x += x</div><div class="line">                sum_y += y</div><div class="line">                sum_x2 += pow(x, 2)</div><div class="line">                sum_y2 += pow(y, 2)</div><div class="line">        if n == 0:</div><div class="line">            return 0</div><div class="line">        # now compute denominator</div><div class="line">        denominator = (sqrt(sum_x2 - pow(sum_x, 2) / n)</div><div class="line">                       * sqrt(sum_y2 - pow(sum_y, 2) / n))</div><div class="line">        if denominator == 0:</div><div class="line">            return 0</div><div class="line">        else:</div><div class="line">            return (sum_xy - (sum_x * sum_y) / n) / denominator</div></pre></td></tr></table></figure></p>
-<p>余弦相似度<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">def dot_product(v1, v2):</div><div class="line">    return sum(a * b for a, b in zip(v1, v2))</div><div class="line">def similarity(v1, v2):</div><div class="line">    return dot_product(v1, v2) / (magnitude(v1) * magnitude(v2) + .00000000001)</div></pre></td></tr></table></figure></p>
-<p>相似度选择：</p>
-<ul>
-<li>如果数据受到分数贬值（即不同用户使用不同的评价范围）的时候，使用皮尔逊系数</li>
-<li>如果数据稠密（几乎所有都没有零值）且属性值大小十分重要，那么可以使用欧氏距离或者曼哈顿距离</li>
-<li>如果数据稀疏，考虑使用余弦相似度</li>
-</ul>
-        
-          <a class="article-more-a" href="/2017/06/06/collaborativeFiltering/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据挖掘</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/06/collaborativeFiltering/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-dataWarehouse" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/04/dataWarehouse/">数据仓库</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/04/dataWarehouse/" class="archive-article-date">
-  	<time datetime="2017-06-04T13:52:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在银联实习也算是做数据挖掘方面的工作，先前虽然有接触算法这一块，学校也开了机器学习这门课，但是对于数据仓库不是很了解。那个和厂商聊起来，他问我学过数据仓库吗，我没答应上来，所以今天准备好好学习下数据仓库。</p>
-<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>20世纪80年代中期，“数据仓库”（Data Warahouse， DW）这个名词首次出现在号称“数据仓库之父”W.H.Inmon（恩门）的Building Data Warahouse一书中。恩门把数据仓库定义为“一个面向主题的，集成的，稳定的，随时间变化的数据的集合，以用于支持管理决策过程”。</p>
-<h3 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h3><p>面向主题组织的数据具有以下特点：</p>
-<ul>
-<li>各个主题有完整，一致的内容以便在此基础上做分析处理</li>
-<li>主题之间有重叠的内容，反映主题间的联系。重叠是逻辑上的，不是物理上的。</li>
-<li>各主题的综合方式存在不同。</li>
-<li>主题域应该具有独立性（数据是否属于该主题有明确的界限）和完备性（对该主题进行分析所涉及的内容均要在主题域内）。</li>
-</ul>
-<h3 id="集成性"><a href="#集成性" class="headerlink" title="集成性"></a>集成性</h3><p>数据仓库中存储的数据一般从企业原有已建立的数据库系统中提取出来，但并不是所有数据的简单拷贝，而是经过抽取、筛选、清理、转换、综合等工作得到的数据。</p>
-<h3 id="稳定性"><a href="#稳定性" class="headerlink" title="稳定性"></a>稳定性</h3><p>数据仓库在某个时间段内来看是保持不变的。</p>
-<h3 id="随时间而变化"><a href="#随时间而变化" class="headerlink" title="随时间而变化"></a>随时间而变化</h3><p>数据仓库大多关注的是历史数据，其中数据是批量载入的，即定期操作型应用系统中接收新的数据内容，这使得数据仓库中的数据总是拥有时间维度。</p>
-<h2 id="数据仓库系统"><a href="#数据仓库系统" class="headerlink" title="数据仓库系统"></a>数据仓库系统</h2><h3 id="数据仓库组成"><a href="#数据仓库组成" class="headerlink" title="数据仓库组成"></a>数据仓库组成</h3><p>数据仓库系统通常指一个数据库环境，而不是指一件产品。数据仓库系统的一般体系结构如下图所示，整个数据仓库系统分为源数据层、数据存储和管理层、OLAP服务器层和前端分析工具层<br><img src="/2017/06/04/dataWarehouse/dw.jpeg" alt="数据仓库组成"></p>
-        
-          <a class="article-more-a" href="/2017/06/04/dataWarehouse/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据挖掘</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据仓库</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/04/dataWarehouse/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-oraCons" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/04/oraCons/">数据库约束</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/04/oraCons/" class="archive-article-date">
-  	<time datetime="2017-06-04T02:04:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在系统学习数据库之前，直接前面知识了解CURD操作的命令，有的时候再写代码的时候会遇到要求需要添加NOT NULL等约束，但是具体有哪些约束以及如何给出专业的解释，其实自己是比较虚的。所以今天准备系统学习下数据库的约束。</p>
-<h2 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h2><p>约束是数据库中不可少的一部分。约束的目的在于保持数据的完整性，数据完整性是指数据的精确性以及可靠性。约束的种类：</p>
-<ul>
-<li>域完整性：对数据表中字段属性的约束，主要包括not null约束／唯一约束／检查约束</li>
-<li>实体完整性：主键约束，关系中主属性不为null且不能有相同值。</li>
-<li>参照完整性：外键约束，关系中外键必须是另一个关系的主键有效值</li>
-</ul>
-        
-          <a class="article-more-a" href="/2017/06/04/oraCons/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">oracle</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">约束</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/04/oraCons/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1053,18 +1021,6 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">R</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据可视化</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">dplyr</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">小章鱼</a>
               </li>
              
@@ -1077,7 +1033,23 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">pryr</a>
+                <a href="javascript:void(0)" class="js-tag color2">R</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">数据可视化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据操作</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">dplyr</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1101,6 +1073,14 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">pryr</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据挖掘</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">bug</a>
               </li>
              
@@ -1109,23 +1089,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据挖掘</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Exception</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据仓库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hash</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">引用</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1137,15 +1105,31 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">引用</a>
+                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+                <a href="javascript:void(0)" class="js-tag color3">logical</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据仓库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Exception</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1157,15 +1141,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
+                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">reading</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1189,14 +1169,6 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">uml</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">事务</a>
               </li>
              
@@ -1206,6 +1178,14 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">事务处理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">uml</a>
               </li>
             
             <div class="clearfix"></div>
